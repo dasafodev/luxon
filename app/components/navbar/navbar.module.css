@@ -1,0 +1,13 @@
+
+.nav{
+
+}
+
+.list{
+    display: flex;
+}
+
+.list_item{
+    list-style-type: none;
+    margin: 0 10px;
+}
