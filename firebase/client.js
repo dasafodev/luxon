@@ -12,7 +12,6 @@ export const firebaseConfig = {
 };
 
 try {
-    console.log(firebaseConfig)
     firebase.initializeApp(firebaseConfig)
 } catch (error) {
     if(!/already exist/.test(error.message)){
