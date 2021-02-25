@@ -1,0 +1,13 @@
+.button{
+    margin: 10px 10px;
+    height: 35px;
+    width: 120px;
+    border-radius: 4px;
+    background-color:#051940 ;
+    border: 1px solid #C613DA;
+    color: white;
+}
+
+.secondary{
+    border: 1px solid #3092CD;
+}
