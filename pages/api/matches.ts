@@ -1,11 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import db from "../../utils/database";
+import sameDate from "../../utils/sameDate";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
-      return res.status(200).end();
+      try {
+        const matchesRef = db.collection("matches");
+        const snapshot = await matchesRef.get();
+
+        let docs = [];
+
+        if (snapshot.docs.length > 0) {
+          snapshot.forEach((doc) => {
+            const documentDate = new Date(doc.data().utcDate);
+            const currentDate = new Date();
+            if (sameDate(currentDate, documentDate)) {
+              docs.push(doc.data());
+            }
+          });
+        }
+
+        return res.status(200).json({
+          statusCode: 200,
+          total: docs.length,
+          matches: docs,
+        });
+      } catch (e) {
+        return res.status(400).json({
+          statusCode: 400,
+          error: e.message,
+        });
+      }
     case "POST":
       try {
         // List matches across (a set of) competitions.
@@ -31,7 +58,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           }
         });
 
-       return res.status(201).json({
+        return res.status(201).json({
           statusCode: 201,
           message: "Today's matches have been saved.",
         });
@@ -41,6 +68,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           error: e.message,
         });
       }
-
   }
 };
