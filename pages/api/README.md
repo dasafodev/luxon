@@ -1,8 +1,8 @@
 ### REST API
 
 ## Matches
-### Get a list matches across (a set of) competitions from football-data.org.
-`GET` /api/matches
+### Post a list matches across (a set of) competitions from football-data.org.
+`POST` /api/matches
 
 #### Responses
 - `201`: Success. All the matches were saved at Firebase.
