@@ -21,17 +21,21 @@ try {
     
 }
 
-export const loginWithGmail = () => { 
+export const signOut = async () => {
+    return await firebase.auth().signOut();
+}
+
+export const loginWithGmail = async() => { 
     const gmailProvider = new firebase.auth.GoogleAuthProvider()
-    return firebase.auth().signInWithPopup(gmailProvider)
+    return await firebase.auth().signInWithPopup(gmailProvider)
 }
 
-export const loginWithEmail = (email:string, password:string ) => {
-    return firebase.auth().signInWithEmailAndPassword(email,password)
+export const loginWithEmail = async(email:string, password:string ) => {
+    return await firebase.auth().signInWithEmailAndPassword(email,password)
 }
 
-export const signupEmail = (email:string, password:string) => {
-    return firebase.auth().createUserWithEmailAndPassword(email,password);
+export const signupEmail = async (email:string, password:string) =>  {
+    return await firebase.auth().createUserWithEmailAndPassword(email,password);
 }
 
 

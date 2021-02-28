@@ -14,4 +14,9 @@
 
 .list {
   display: flex;
+  align-items: center;
+}
+
+.name{
+  margin-right: 1.2rem;
 }
