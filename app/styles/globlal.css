@@ -1,3 +1,20 @@
+:root {
+    --blue: #051940;
+    --fucsia: #C613DA;
+    --gradient-image:linear-gradient(
+        0deg,
+        rgba(198, 19, 218, 0.7) 0%,
+        rgba(103, 22, 143, 0.6) 15%,
+        rgba(5, 25, 64, 0.5) 45%
+      );
+    --gradient : linear-gradient(
+        0deg,
+        rgba(198, 19, 218, 1) 0%,
+        rgba(103, 22, 143, 1) 15%,
+        rgba(5, 25, 64, 1) 45%
+      );
+  }
+
 html{
     font-size: 12px;
     color: white;
@@ -22,7 +39,7 @@ p{
 input{
     background: transparent;
     border: 0;
-    border-bottom: 1px solid #C613DA;
+    border-bottom: 1px solid var(--fucsia);
     width: 200px;
     padding: 0.2rem;
     caret-color: white;
@@ -53,4 +70,8 @@ input::placeholder{
 
 .ml-0{
     margin-left: 0!important;
+}
+
+.title{
+    font-size: 3rem;
 }
