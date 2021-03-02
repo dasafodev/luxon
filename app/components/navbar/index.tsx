@@ -4,10 +4,9 @@ import styles from "./navbar.module.css";
 import Image from "next/image";
 import Button from "../button";
 import Link from "next/link";
-import firebase,{signOut} from "@fire-client";
+import firebase, { signOut } from "@fire-client";
 
 const NavBar = () => {
-
   const [fireUser, setFireUser] = useState<firebase.User>(null);
   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
   const router = useRouter();
@@ -26,24 +25,30 @@ const NavBar = () => {
           </Button>
           <Button onClick={() => router.push("/signup")}>SignUp</Button>
         </ul>
-      ) : (fireUser !=undefined)? welcome(fireUser):null }
+      ) : fireUser != undefined ? (
+        welcome(fireUser)
+      ) : null}
     </nav>
   );
 };
 
 const welcome = (fireUser: firebase.User) => {
+  const router = useRouter();
+
   return (
     <ul className={styles.list}>
-      <h3 className={styles.name}>{"Bienvenido " + fireUser?.displayName}</h3>
+      <Button onClick={() => router.push("/profile")}>Perfil</Button>
+
+      {/* <h3 className={styles.name}>{"Bienvenido " + fireUser?.displayName}</h3> */}
       <Image
-        onClick={()=>signOut()}
+        onClick={() => signOut()}
         src="/images/icons/logout.png"
         alt="Logout"
         width={24}
         height={24}
       />
     </ul>
-  )
-}
+  );
+};
 
 export default NavBar;
