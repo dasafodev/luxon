@@ -8,24 +8,46 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "GET":
       try {
         const matchesRef = db.collection("matches");
+        const teamsRef = db.collection("teams");
+
         const snapshot = await matchesRef.get();
 
-        let docs = [];
+        let tempMatches = [];
+        let matches = [];
 
         if (snapshot.docs.length > 0) {
           snapshot.forEach((doc) => {
             const documentDate = new Date(doc.data().utcDate);
             const currentDate = new Date();
             if (sameDate(currentDate, documentDate)) {
-              docs.push(doc.data());
+              tempMatches.push(doc.data());
             }
           });
+
+          // Once all matches are fetched it's time to resolve home and away teams data per match.
+          await Promise.all(
+            tempMatches.map(async (match) => {
+              const homeTeamDoc = await teamsRef
+                .doc(`${match.homeTeam.id}`)
+                .get();
+              const homeTeamData = homeTeamDoc.data();
+              const awayTeamDoc = await teamsRef
+              .doc(`${match.awayTeam.id}`)
+              .get();
+            const awayTeamData = awayTeamDoc.data();
+              matches.push({
+                ...match,
+                homeTeam: homeTeamData,
+                awayTeam: awayTeamData
+              });
+            })
+          );
         }
 
         return res.status(200).json({
           statusCode: 200,
-          total: docs.length,
-          matches: docs,
+          total: tempMatches.length,
+          matches: matches,
         });
       } catch (e) {
         return res.status(400).json({
