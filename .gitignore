@@ -1,3 +1,6 @@
 node_modules
 .next
 .env
+
+## Firebase 
+utils/database/serviceAccountKey.json

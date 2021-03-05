@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*":["app/components/*"],
+      "@fire-client":["firebase/client.ts"],
+    },
     "target": "es5",
     "lib": [
       "dom",
