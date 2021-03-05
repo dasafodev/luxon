@@ -12,4 +12,7 @@ module.exports = {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
     FOOTBALL_DATA_API_KEY: process.env.FOOTBALL_DATA_API_KEY
   },
+  images: {
+    domains: ['crests.football-data.org'],
+  },
 };
