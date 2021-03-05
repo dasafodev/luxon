@@ -34,15 +34,16 @@ const Home = ({ matches }) => {
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
           {matches.map(match => {
+            {console.log(match.homeTeam)}
+            {console.log(match.awayTeam)}
             return <MatchCard
               key={match.id}
-              hour={DateTime.fromISO(match.utcDate).toLocaleString(
-                DateTime.TIME_SIMPLE)}
+              hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
               competition={match.competition.name}
               homeTeamName={match.homeTeam.shortName}
               homeTeamImageUrl={match.homeTeam.crestUrl}
               awayTeamImageUrl={match.awayTeam.crestUrl}
-              awayTeamName={match.homeTeam.shortName}
+              awayTeamName={match.awayTeam.shortName}
               status={match.status === "IN_PLAY" || match.status === "FINISHED" ? match.status : "SCHEDULED"}
               like={true}
             />
