@@ -24,9 +24,7 @@ const NavBar = () => {
         </a>
       </Link>
       {!!(width >= 768) ? (
-        router.pathname != "/login" &&
-        router.pathname != "/signup" &&
-        !fireUser ? (
+        router.pathname != "/login" && router.pathname != "/signup" ? (
           <SearchBar />
         ) : null
       ) : null}
@@ -41,24 +39,22 @@ const NavBar = () => {
             <Button onClick={() => router.push("/signup")}>SignUp</Button>
           </ul>
         ) : fireUser != undefined ? (
-          welcome(fireUser)
+          LoggedOptions()
         ) : null
       ) : null}
     </nav>
   );
 };
 
-const welcome = (fireUser: firebase.User) => {
+const LoggedOptions = () => {
+  const router = useRouter();
+
   return (
     <ul className={styles.list}>
-      <h3 className={styles.name}>{"Bienvenido " + fireUser?.displayName}</h3>
-      <Image
-        onClick={() => signOut()}
-        src="/images/icons/logout.png"
-        alt="Logout"
-        width={24}
-        height={24}
-      />
+      <Button onClick={() => router.push("/favorites")} secondary={true}>
+        Favoritos
+      </Button>
+      <Button onClick={() => router.push("/profile")}>Perfil</Button>
     </ul>
   );
 };
