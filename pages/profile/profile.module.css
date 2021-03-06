@@ -5,4 +5,16 @@
     height: calc(100vh - 70px );
     width: 100vw;
     background-image: var(--gradient);
+    background-attachment: fixed;
+    overflow: scroll;
+    padding-bottom: 3rem;
+}
+
+.info{
+    font-size: 1.3rem;
+}
+
+.info_highlight{
+    font-size: 2rem;
+    margin-right: 1rem;
 }

@@ -21,9 +21,10 @@ const Profile = () => {
             alt="profile pic"
             src="/images/logo.png"
             className="rounded"
+            layout="responsive"
           ></Image>
           <h2 className="title">{fireUser.displayName}</h2>
-          <p><strong>Email:  </strong> {fireUser.email}</p>
+          <p className={styles.info}><strong className={styles.info_highlight}>Email:  </strong> {fireUser.email}</p>
         </div>
       </div>
     </React.Fragment>
