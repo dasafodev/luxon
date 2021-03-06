@@ -73,3 +73,18 @@ input::placeholder {
 .title {
 	font-size: 3rem;
 }
+
+.text-center{
+	text-align: center;
+}
+
+.rounded{
+	border-radius: 50%;
+}
+
+
+@media (max-width: 600px) {
+	html {
+	  font-size: 10px;
+	}
+  }

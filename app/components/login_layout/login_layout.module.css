@@ -1,17 +1,11 @@
 .container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	height: calc(100vh - 70px);
-	width: 100vw;
-	background-image: linear-gradient(
-			0deg,
-			rgba(198, 19, 218, 0.7) 0%,
-			rgba(103, 22, 143, 0.6) 15%,
-			rgba(5, 25, 64, 0.5) 45%
-		),
-		url("/images/background.webp");
-	background-size: cover;
-	background-position: right top;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 70px );
+    width: 100vw;
+    background-image: var(--gradient-image), url('/images/background.webp');
+    background-size: cover;
+    background-position: right top;
 }
 
 .form_container {
