@@ -23,8 +23,8 @@ const Profile = () => {
             className="rounded"
             layout="responsive"
           ></Image>
-          <h2 className="title">{fireUser.displayName}</h2>
-          <p className={styles.info}><strong className={styles.info_highlight}>Email:  </strong> {fireUser.email}</p>
+          <h2 className="title">{(fireUser)?fireUser.displayName: 'Bienvenido'}</h2>
+          <p className={styles.info}><strong className={styles.info_highlight}>Email:  </strong> {(fireUser)?fireUser.email:''}</p>
         </div>
       </div>
     </React.Fragment>
