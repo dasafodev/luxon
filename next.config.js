@@ -15,7 +15,10 @@ module.exports = {
     API_TOKEN:process.env.API_TOKEN
   },
   images: {
-    domains: ['crests.football-data.org', 'upload.wikimedia.org'],
+    domains: [
+      'crests.football-data.org',
+      'upload.wikimedia.org'
+    ],
   },
 };
 
