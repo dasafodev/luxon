@@ -1,111 +1,75 @@
 :root {
-  --blue: #051940;
-  --fucsia: #c613da;
-  --gradient-image: linear-gradient(
-    0deg,
-    rgba(198, 19, 218, 0.7) 0%,
-    rgba(103, 22, 143, 0.6) 15%,
-    rgba(5, 25, 64, 0.5) 45%
-  );
-  --gradient: linear-gradient(
-    0deg,
-    rgba(198, 19, 218, 1) 0%,
-    rgba(103, 22, 143, 1) 15%,
-    rgba(5, 25, 64, 1) 45%
-  );
-  /* Tamaños */
-
-  --mobile:425px;
-  --tablet:768px;
-  --laptop-s:1024px;
-  --laptop-m:1440px;
-  --laptop-l:2560px;
-
+	--blue: #051940;
+	--fucsia: #c613da;
+	--gradient-image: linear-gradient(
+		0deg,
+		rgba(198, 19, 218, 0.7) 0%,
+		rgba(103, 22, 143, 0.6) 15%,
+		rgba(5, 25, 64, 0.5) 45%
+	);
+	--gradient: linear-gradient(
+		0deg,
+		rgba(198, 19, 218, 1) 0%,
+		rgba(103, 22, 143, 1) 15%,
+		rgba(5, 25, 64, 1) 45%
+	);
 }
 
 html {
-  font-size: 12px;
-  color: white;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: white;
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
-  font-family: "Lato", sans-serif;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
+	font-family: "Lato", sans-serif;
 }
 
 h2 {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 p {
-  margin: 0;
-  font-size: 1.3rem;
+	margin: 0;
 }
 
-input {
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--fucsia);
-  width: 200px;
-  padding: 0.2rem;
-  caret-color: white;
-  color: white;
-  font-size: 1.3rem;
+input:not([type="search"]) {
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid var(--fucsia);
+	width: 200px;
+	padding: 0.2rem;
+	caret-color: white;
+	color: white;
+	font-size: 1.3rem;
 }
 
 input:focus,
 button:focus {
-  outline: none;
-}
-input:not([type="search"]){
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--fucsia);
-    width: 200px;
-    padding: 0.2rem;
-    caret-color: white;
-    color: white;
-    font-size: 1.3rem;
+	outline: none;
 }
 
 input::placeholder {
-  color: whitesmoke;
-  font-size: 1.3rem;
+	color: whitesmoke;
+	font-size: 1.3rem;
 }
 
 .bold {
-  font-size: 1.6rem;
-  font-weight: bold;
+	font-size: 1.6rem;
+	font-weight: bold;
 }
 
 .mt-3 {
-  margin-top: 6rem !important;
+	margin-top: 6rem !important;
 }
 
 .ml-0 {
-  margin-left: 0 !important;
+	margin-left: 0 !important;
 }
 
 .title {
-  font-size: 3rem;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.rounded {
-  border-radius: 50%;
-}
-
-@media (max-width: 425px) {
-  html {
-    font-size: 10px;
-  }
+	font-size: 3rem;
 }

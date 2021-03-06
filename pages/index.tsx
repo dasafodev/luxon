@@ -6,24 +6,24 @@ import styles from "../app/styles/index.module.css";
 import MatchCard from "../app/components/match_card";
 
 export async function getServerSideProps(context) {
-  const protocol = process.env.NODE_ENV ? "http" : "https";
+	const protocol = process.env.NODE_ENV ? "http" : "https";
 
-  const response = await fetch(
-    `${protocol}://${context.req.headers.host}/api/matches`
-  );
-  const data = await response.json();
+	const response = await fetch(
+		`${protocol}://${context.req.headers.host}/api/matches`
+	);
+	const data = await response.json();
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+	if (!data) {
+		return {
+			notFound: true,
+		};
+	}
 
-  return {
-    props: {
-      matches: data.matches,
-    },
-  };
+	return {
+		props: {
+			matches: data.matches,
+		},
+	};
 }
 
 const Home = ({ matches }) => {
@@ -34,8 +34,7 @@ const Home = ({ matches }) => {
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
           {matches.map(match => {
-            {console.log(match.homeTeam)}
-            {console.log(match.awayTeam)}
+
             return <MatchCard
               key={match.id}
               hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
