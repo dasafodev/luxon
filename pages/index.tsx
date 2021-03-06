@@ -1,5 +1,5 @@
 import React from "react";
-import { DateTime } from 'luxon';
+import { DateTime } from "luxon";
 import NavBar from "../app/components/navbar";
 import "../firebase/client";
 import styles from "../app/styles/index.module.css";
@@ -33,21 +33,25 @@ const Home = ({ matches }) => {
       <main className={styles.main}>
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
-          {matches.map(match => {
-            {console.log(match.homeTeam)}
-            {console.log(match.awayTeam)}
-            return <MatchCard
+          {matches.map((match) => (
+            <MatchCard
               key={match.id}
-              hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
+              hour={DateTime.fromISO(match.utcDate).toLocaleString(
+                DateTime.TIME_SIMPLE
+              )}
               competition={match.competition.name}
               homeTeamName={match.homeTeam.shortName}
               homeTeamImageUrl={match.homeTeam.crestUrl}
               awayTeamImageUrl={match.awayTeam.crestUrl}
               awayTeamName={match.awayTeam.shortName}
-              status={match.status === "IN_PLAY" || match.status === "FINISHED" ? match.status : "SCHEDULED"}
+              status={
+                match.status === "IN_PLAY" || match.status === "FINISHED"
+                  ? match.status
+                  : "SCHEDULED"
+              }
               like={true}
             />
-          })}
+          ))}
         </section>
       </main>
     </React.Fragment>
