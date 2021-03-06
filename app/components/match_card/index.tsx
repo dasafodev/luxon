@@ -1,11 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import styles from "./match_card.module.css";
+import { useAppActions, useAppContext } from "app/context/state";
 
-const dislikeIcon = "/images/icons/dislike.png"
-const likeIcon = "/images/icons/like.png"
+const dislikeIcon = "/images/icons/dislike.png";
+const likeIcon = "/images/icons/like.png";
 
 const MatchCard = ({
+  id,
   hour,
   competition,
   homeTeamImageUrl,
@@ -13,16 +15,39 @@ const MatchCard = ({
   awayTeamImageUrl,
   awayTeamName,
   status,
-  like
 }) => {
+  const { favorites } = useAppContext();
+  const { addMatchToFavorites } = useAppActions();
+
   return (
     <div className={styles.card}>
-        <div className={styles.like_icon}>
-        <Image 
-            src={like?likeIcon:dislikeIcon} alt="Like icon" width={24} height={24} 
-        />
-        </div>
-        
+      <button
+        className={styles.like_icon}
+        onClick={() => {
+          if (!favorites.some((match) => match.id == id)) {
+            addMatchToFavorites({
+              id,
+              hour,
+              competition,
+              homeTeamImageUrl,
+              homeTeamName,
+              awayTeamImageUrl,
+              awayTeamName,
+              status,
+            });
+          } else {
+            // TODO: Remove from List
+            console.log("TODO: Remove match from favorites.");
+          }
+        }}
+      >
+        {favorites.some((match) => match.id == id) ? (
+          <img src={likeIcon} alt="Filled heart" />
+        ) : (
+          <img src={dislikeIcon} alt="Unfilled heart" />
+        )}
+      </button>
+
       <div className={styles.info_container}>
         <p className="bold">{hour}</p>
         <p className={styles.competition}>{competition}</p>
