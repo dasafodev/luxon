@@ -15,18 +15,18 @@
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
 }
 
-.competition{
+.competition {
   font-size: 1rem;
-  color:#949494 ;
+  color: #949494;
 }
 
-.info_container{
+.info_container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.logo_container{
+.logo_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,14 +36,14 @@
   border-radius: 50%;
 }
 
-.teams_container{
+.teams_container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 }
 
-.team_item{
+.team_item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,8 +54,11 @@
   margin-top: 0.7rem;
 }
 
-.like_icon{
+.like_icon {
   position: absolute;
   top: 16px;
   right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
