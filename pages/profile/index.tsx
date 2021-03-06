@@ -8,7 +8,19 @@ const Profile = () => {
   const [fireUser, setFireUser] = useState<firebase.User>(
     firebase.auth().currentUser
   );
+
   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+  const [name, setName] = useState(
+    fireUser ? fireUser.displayName : "Bienvenido"
+  );
+
+  const onChangeName = (val: React.ChangeEvent<HTMLInputElement>) => {
+    setName(val.target.value);
+    firebase.auth().currentUser.updateProfile({
+      displayName: val.target.value,
+    });
+  };
+
   return (
     <React.Fragment>
       <NavBar />
@@ -23,8 +35,16 @@ const Profile = () => {
             className="rounded"
             layout="responsive"
           ></Image>
-          <h2 className="title">{(fireUser)?fireUser.displayName: 'Bienvenido'}</h2>
-          <p className={styles.info}><strong className={styles.info_highlight}>Email:  </strong> {(fireUser)?fireUser.email:''}</p>
+          <input
+            type="edit"
+            className={styles.input}
+            value={name}
+            onChange={(val) => onChangeName(val)}
+          />
+          <p className={styles.info}>
+            <strong className={styles.info_highlight}>Email: </strong>{" "}
+            {fireUser ? fireUser.email : ""}
+          </p>
         </div>
       </div>
     </React.Fragment>
