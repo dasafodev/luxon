@@ -36,6 +36,7 @@ const Home = ({ matches }) => {
           {matches.map((match) => (
             <MatchCard
               key={match.id}
+              id={match.id}
               hour={DateTime.fromISO(match.utcDate).toLocaleString(
                 DateTime.TIME_SIMPLE
               )}
@@ -49,7 +50,6 @@ const Home = ({ matches }) => {
                   ? match.status
                   : "SCHEDULED"
               }
-              like={true}
             />
           ))}
         </section>
