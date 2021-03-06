@@ -15,9 +15,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const onClickLogin = async() => {
-    console.log('object :>> onclick');
-    console.log('email :>> ', email);
-    console.log('password :>> ', password);
     await loginWithEmail(email,password)
     router.push("/")
   }

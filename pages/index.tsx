@@ -34,8 +34,7 @@ const Home = ({ matches }) => {
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
           {matches.map(match => {
-            {console.log(match.homeTeam)}
-            {console.log(match.awayTeam)}
+
             return <MatchCard
               key={match.id}
               hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
