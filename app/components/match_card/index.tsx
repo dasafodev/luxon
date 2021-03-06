@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./match_card.module.css";
 import { useAppActions, useAppContext } from "app/context/state";
+import { createEvent } from "../../../utils/ics";
 
 const dislikeIcon = "/images/icons/dislike.png";
 const likeIcon = "/images/icons/like.png";
@@ -25,6 +26,7 @@ const MatchCard = ({
         className={styles.like_icon}
         onClick={() => {
           if (!favorites.some((match) => match.id == id)) {
+            createEvent()
             addMatchToFavorites({
               id,
               hour,
