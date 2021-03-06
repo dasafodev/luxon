@@ -5,6 +5,7 @@ import Image from "next/image";
 import Button from "../button";
 import Link from "next/link";
 import firebase, { signOut } from "@fire-client";
+
 import SearchBar from "@components/search_bar";
 
 import useDimensions from "../../hooks/useDimensions";
