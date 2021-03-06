@@ -14,5 +14,8 @@ module.exports = {
     ACTIONS_GITHUB_TOKEN:process.env.ACTIONS_GITHUB_TOKEN,
     API_TOKEN:process.env.API_TOKEN
   },
+  images: {
+    domains: ['crests.football-data.org'],
+  },
 };
 

@@ -12,6 +12,7 @@ const MatchCard = ({
   homeTeamName,
   awayTeamImageUrl,
   awayTeamName,
+  status,
   like
 }) => {
   return (
@@ -31,6 +32,7 @@ const MatchCard = ({
         <p>VS</p>
         <Team imageUrl={awayTeamImageUrl} name={awayTeamName} />
       </div>
+      <p className={styles.competition}>{status}</p>
     </div>
   );
 };

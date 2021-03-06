@@ -1,4 +1,5 @@
 import React from "react";
+import { DateTime } from 'luxon';
 import NavBar from "../app/components/navbar";
 import "../firebase/client";
 import styles from "../app/styles/index.module.css";
@@ -26,96 +27,30 @@ export async function getServerSideProps(context) {
 }
 
 const Home = ({ matches }) => {
-	return (
-		<React.Fragment>
-			<NavBar />
-			<main className={styles.main}>
-				<h2 className={styles.title}>¡Partidos de Hoy!</h2>
-				<section className={styles.cards_container}>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={true}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={false}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={false}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={true}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={false}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={true}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={false}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={false}
-					/>
-					<MatchCard
-						hour="7:00 PM"
-						competition="Champions League"
-						homeTeamName="FC Barcelona"
-						homeTeamImageUrl="/images/barcelona.png"
-						awayTeamImageUrl="/images/real-madrid.png"
-						awayTeamName="Real Madrid"
-						like={true}
-					/>
-				</section>
-			</main>
-		</React.Fragment>
-	);
+  return (
+    <React.Fragment>
+      <NavBar />
+      <main className={styles.main}>
+        <h2 className={styles.title}>¡Partidos de Hoy!</h2>
+        <section className={styles.cards_container}>
+          {matches.map(match => {
+            {console.log(match.homeTeam)}
+            {console.log(match.awayTeam)}
+            return <MatchCard
+              key={match.id}
+              hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
+              competition={match.competition.name}
+              homeTeamName={match.homeTeam.shortName}
+              homeTeamImageUrl={match.homeTeam.crestUrl}
+              awayTeamImageUrl={match.awayTeam.crestUrl}
+              awayTeamName={match.awayTeam.shortName}
+              status={match.status === "IN_PLAY" || match.status === "FINISHED" ? match.status : "SCHEDULED"}
+              like={true}
+            />
+          })}
+        </section>
+      </main>
+    </React.Fragment>
+  );
 };
 export default Home;
