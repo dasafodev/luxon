@@ -21,6 +21,7 @@ const Profile = () => {
     });
   };
 
+  
   return (
     <React.Fragment>
       <NavBar />
