@@ -10,7 +10,7 @@ import SearchBar from "@components/search_bar";
 
 import useDimensions from "../../hooks/useDimensions";
 
-const NavBar = () => {
+const NavBar = ({onChange=null}) => {
   const [fireUser, setFireUser] = useState<firebase.User>(null);
   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
   const router = useRouter();
@@ -27,7 +27,7 @@ const NavBar = () => {
         </Link>
         {!!(width >= 768) ? (
           router.pathname != "/login" && router.pathname != "/signup" ? (
-            <SearchBar />
+            <SearchBar onChange={onChange}/>
           ) : null
         ) : null}
         {!!(width >= 768) ? (

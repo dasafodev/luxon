@@ -9,6 +9,7 @@ const likeIcon = "/images/icons/like.png";
 const MatchCard = ({
   id,
   hour,
+  fullHour,
   competition,
   homeTeamImageUrl,
   homeTeamName,
