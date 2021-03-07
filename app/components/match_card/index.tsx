@@ -7,29 +7,25 @@ import axios from "axios";
 const dislikeIcon = "/images/icons/dislike.png";
 const likeIcon = "/images/icons/like.png";
 
-const createEvent = (homeTeamName,awayTeamName, fullHour) => {
-  console.log('homeTeamName :>> ', homeTeamName);
-  console.log('awayTeamName :>> ', awayTeamName);
-  console.log('fullHour :>> ', fullHour);
-  // window.fetch('/api/calendar')
+const createEvent = (homeTeamName, awayTeamName, fullHour) => {
+  let url = (window.location.hostname=='localhost')?'http://localhost:3000':`https://${window.location.hostname}`
   axios({
-    url: 'http://localhost:3000/api/calendar', //your url
-    method: 'GET',
+    url: `${url}/api/calendar`, //your url
+    method: 'POST',
     responseType: 'blob', // important
+    data: {
+      "start": fullHour,
+      "title": `${homeTeamName} vs ${awayTeamName}`
+    }
   }).then((response) => {
-     const url = window.URL.createObjectURL(new Blob([response.data]));
-     const link = document.createElement('a');
-     link.href = url;
-     link.setAttribute('download', 'file.pdf'); //or any other extension
-     document.body.appendChild(link);
-     link.click();
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'calendar.ics'); //or any other extension
+    document.body.appendChild(link);
+    link.click();
   });
-  // axios.post('http://localhost:3000/api/calendar',
-  // { 
-  //   "start":fullHour,
-  //   "title":`${homeTeamName} vs ${awayTeamName}`
-  //  },)
-  // .then(console.log)
+
 }
 
 
@@ -53,7 +49,7 @@ const MatchCard = ({
         className={styles.like_icon}
         onClick={() => {
           if (!favorites.some((match) => match.id == id)) {
-            createEvent(homeTeamName,awayTeamName,fullHour)
+            createEvent(homeTeamName, awayTeamName, fullHour)
             addMatchToFavorites({
               id,
               hour,
@@ -73,8 +69,8 @@ const MatchCard = ({
         {favorites.some((match) => match.id == id) ? (
           <img src={likeIcon} alt="Filled heart" />
         ) : (
-          <img src={dislikeIcon} alt="Unfilled heart" />
-        )}
+            <img src={dislikeIcon} alt="Unfilled heart" />
+          )}
       </button>
 
       <div className={styles.info_container}>

@@ -10,7 +10,7 @@ const cal = ical({
 
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method = "POST") {
+  if (req.method == "POST") {
     try {
       let startHour  = req.body["start"];
       let title = req.body["title"]
@@ -20,11 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         summary: title,
         organizer: 'Organizer\'s LuxonCorp <luxxoncorp@luxxon.com>'
     });
-    // console.log(cal.toURL());
-    return res.status(200).json({
-      statusCode: 200,
-      message:"nice"
-    });
+    cal.serve(res)
     } catch (e) {
       return res.status(400).json({
         statusCode: 400,
