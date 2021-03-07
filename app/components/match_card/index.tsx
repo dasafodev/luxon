@@ -2,14 +2,41 @@ import Image from "next/image";
 import React from "react";
 import styles from "./match_card.module.css";
 import { useAppActions, useAppContext } from "app/context/state";
-import { createEvent } from "../../../utils/ics";
+import axios from "axios";
 
 const dislikeIcon = "/images/icons/dislike.png";
 const likeIcon = "/images/icons/like.png";
 
+const createEvent = (homeTeamName,awayTeamName, fullHour) => {
+  console.log('homeTeamName :>> ', homeTeamName);
+  console.log('awayTeamName :>> ', awayTeamName);
+  console.log('fullHour :>> ', fullHour);
+  // window.fetch('/api/calendar')
+  axios({
+    url: 'http://localhost:3000/api/calendar', //your url
+    method: 'GET',
+    responseType: 'blob', // important
+  }).then((response) => {
+     const url = window.URL.createObjectURL(new Blob([response.data]));
+     const link = document.createElement('a');
+     link.href = url;
+     link.setAttribute('download', 'file.pdf'); //or any other extension
+     document.body.appendChild(link);
+     link.click();
+  });
+  // axios.post('http://localhost:3000/api/calendar',
+  // { 
+  //   "start":fullHour,
+  //   "title":`${homeTeamName} vs ${awayTeamName}`
+  //  },)
+  // .then(console.log)
+}
+
+
 const MatchCard = ({
   id,
   hour,
+  fullHour,
   competition,
   homeTeamImageUrl,
   homeTeamName,
@@ -26,7 +53,7 @@ const MatchCard = ({
         className={styles.like_icon}
         onClick={() => {
           if (!favorites.some((match) => match.id == id)) {
-            createEvent()
+            createEvent(homeTeamName,awayTeamName,fullHour)
             addMatchToFavorites({
               id,
               hour,

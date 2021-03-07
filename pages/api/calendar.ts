@@ -1,21 +1,40 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import moment from "moment";
+import ical from 'ical-generator';
+
+const cal = ical({
+  domain: 'luxxon.vercel.com',
+  prodId: {company: 'luxxoncorp.com', product: 'ical-generator'},
+  name: 'Luxxon Calendar',
+});
+
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method = "POST") {
-        try {
-            console.log('__dirname', __dirname)
-            const file = `${__dirname}/images/logo.png`;
-            res.send(file); // Set disposition and send it.
-        } catch (e) {
-          return res.status(400).json({
-            statusCode: 400,
-            error: e.message,
-          });
-        }
-    }else{
-        return res.status(404).json({
-            statusCode: 400,
-            error: "Not found",
-          });
+  if (req.method = "POST") {
+    try {
+      let startHour  = req.body["start"];
+      let title = req.body["title"]
+      const evento = cal.createEvent({
+        start: moment(startHour),
+        end: moment(startHour).add(2, 'hour'),
+        summary: title,
+        organizer: 'Organizer\'s LuxonCorp <luxxoncorp@luxxon.com>'
+    });
+    // console.log(cal.toURL());
+    return res.status(200).json({
+      statusCode: 200,
+      message:"nice"
+    });
+    } catch (e) {
+      return res.status(400).json({
+        statusCode: 400,
+        error: e.message,
+      });
     }
-  };
+  } else {
+    return res.status(404).json({
+      statusCode: 400,
+      error: "Not found",
+    });
+  }
+};
