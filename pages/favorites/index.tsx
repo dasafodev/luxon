@@ -19,6 +19,7 @@ const Favorites = () => {
             <MatchCard
               id={match.id}
               key={match.id}
+              fullHour={match.hour}
               hour={DateTime.fromISO(match.hour).toLocaleString(
                 DateTime.TIME_SIMPLE
               )}

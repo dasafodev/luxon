@@ -1,6 +1,6 @@
 import styles from "./search_bar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({onChange=null}) {
   return (
     <div className={styles.search_bar}>
       <svg
@@ -15,7 +15,7 @@ export default function SearchBar() {
           fill="white"
         />
       </svg>
-      <input className={styles.search_bar} type="search" />
+      <input className={styles.search_bar} type="search" onChange={onChange} />
     </div>
   );
 }
