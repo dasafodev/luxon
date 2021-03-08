@@ -11,11 +11,23 @@ import SearchBar from "@components/search_bar";
 import useDimensions from "../../hooks/useDimensions";
 
 const NavBar = ({onChange=null}) => {
-  const [fireUser, setFireUser] = useState<firebase.User>(null);
+  const { width } = useDimensions();
   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
   const router = useRouter();
+  const [fireUser, setFireUser] = useState<firebase.User>(null);
 
-  const { width } = useDimensions();
+  const LoggedOptions = () => {
+  
+    return (
+      <ul className={styles.list}>
+        <Button onClick={() => router.push("/favorites")} secondary={true}>
+          Favoritos
+        </Button>
+        <Button onClick={() => router.push("/profile")}>Perfil</Button>
+      </ul>
+    );
+  };
+  
 
   return (
     <>
@@ -100,7 +112,6 @@ const NavBar = ({onChange=null}) => {
                   >
                     <path
                       strokeLinejoin="round"
-                      strokeLinejoin="round"
                       strokeWidth="2"
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
@@ -109,7 +120,7 @@ const NavBar = ({onChange=null}) => {
               </Link>
             </li>
             <li className={styles.bottom_navbar_icons}>
-              <Link href="profile">
+              <Link href="/profile">
                 <a>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,19 +144,6 @@ const NavBar = ({onChange=null}) => {
         )}
       </nav>
     </>
-  );
-};
-
-const LoggedOptions = () => {
-  const router = useRouter();
-
-  return (
-    <ul className={styles.list}>
-      <Button onClick={() => router.push("/favorites")} secondary={true}>
-        Favoritos
-      </Button>
-      <Button onClick={() => router.push("/profile")}>Perfil</Button>
-    </ul>
   );
 };
 
