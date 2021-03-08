@@ -22,6 +22,7 @@ const Favorites = () => {
               hour={DateTime.fromISO(match.hour).toLocaleString(
                 DateTime.TIME_SIMPLE
               )}
+              fullHour={match.hour}
               competition={match.competition}
               homeTeamName={match.homeTeamName}
               homeTeamImageUrl={match.homeTeamImageUrl}

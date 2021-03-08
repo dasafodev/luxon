@@ -37,6 +37,7 @@ const Home = ({ matches }) => {
             <MatchCard
               key={match.id}
               id={match.id}
+              fullHour={match.utcDate}
               hour={DateTime.fromISO(match.utcDate).toLocaleString(
                 DateTime.TIME_SIMPLE
               )}
