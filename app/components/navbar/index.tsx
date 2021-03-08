@@ -17,7 +17,6 @@ const NavBar = ({onChange=null}) => {
   const [fireUser, setFireUser] = useState<firebase.User>(null);
 
   const LoggedOptions = () => {
-    // const router = useRouter();
   
     return (
       <ul className={styles.list}>
@@ -147,18 +146,5 @@ const NavBar = ({onChange=null}) => {
     </>
   );
 };
-
-// const LoggedOptions = () => {
-//   const router = useRouter();
-
-//   return (
-//     <ul className={styles.list}>
-//       <Button onClick={() => router.push("/favorites")} secondary={true}>
-//         Favoritos
-//       </Button>
-//       <Button onClick={() => router.push("/profile")}>Perfil</Button>
-//     </ul>
-//   );
-// };
 
 export default NavBar;
