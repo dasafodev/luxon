@@ -11,6 +11,14 @@
   "author": "Luxon Team",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "firebase": "^8.2.9",
+    "firebase-admin": "^9.5.0",
+    "ical-generator": "^1.15.4",
+    "ics": "^2.27.0",
+    "luxon": "^1.26.0",
+    "moment": "^2.29.1",
     "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
