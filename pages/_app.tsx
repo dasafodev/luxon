@@ -1,11 +1,41 @@
+
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Provider } from "../app/context/state";
 import "./../app/styles/globlal.css";
 
+
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
-  return (
+
+  const router = useRouter();
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const handleStart = (url) => (url !== router.asPath) && setLoading(true);
+        const handleComplete = (url) => {
+          console.log('url :>> ', url);
+          console.log('router.asPath :>> ', router.asPath);
+          return (url === router.asPath) && setLoading(false);
+        };
+
+        router.events.on('routeChangeStart', handleStart)
+        router.events.on('routeChangeComplete', handleComplete)
+        router.events.on('routeChangeError', handleComplete)
+
+        return () => {
+            router.events.off('routeChangeStart', handleStart)
+            router.events.off('routeChangeComplete', handleComplete)
+            router.events.off('routeChangeError', handleComplete)
+        }
+    })
+
+
+  return( 
     <Provider>
-      <Component {...pageProps} />
+       {loading?<h2>Holaa</h2>:<Component {...pageProps} />} 
     </Provider>
-  );
+    )
+  ;
 }
