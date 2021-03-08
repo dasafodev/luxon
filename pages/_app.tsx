@@ -10,8 +10,13 @@ export default function MyApp({ Component, pageProps }) {
 
   const [loading, setLoading] = useState(false);
 
+  const noLoad = ['/favorites','/profile','/login','/signup']
+
   useEffect(() => {
-    const handleStart = (url) => setLoading(true);
+    const handleStart = (url) => {
+      console.log('url', router.asPath)
+      if(!noLoad.includes(url))setLoading(true) ;
+    };
     const handleComplete = (url) => {
       console.log(url);
       if (url == "/") {
