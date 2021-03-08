@@ -1,41 +1,43 @@
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Provider } from "../app/context/state";
 import "./../app/styles/globlal.css";
-
+import Loader from "./../app/components/loader";
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
-
   const router = useRouter();
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const handleStart = (url) => (url !== router.asPath) && setLoading(true);
-        const handleComplete = (url) => {
-          console.log('url :>> ', url);
-          console.log('router.asPath :>> ', router.asPath);
-          return (url === router.asPath) && setLoading(false);
-        };
+  useEffect(() => {
+    const handleStart = (url) => setLoading(true);
+    const handleComplete = (url) => {
+      console.log(url);
+      if (url == "/") {
+        setTimeout(function () {
+          return setLoading(false);
+        }, 100);
+      } else {
+        setLoading(false);
+      }
+    };
 
-        router.events.on('routeChangeStart', handleStart)
-        router.events.on('routeChangeComplete', handleComplete)
-        router.events.on('routeChangeError', handleComplete)
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
 
-        return () => {
-            router.events.off('routeChangeStart', handleStart)
-            router.events.off('routeChangeComplete', handleComplete)
-            router.events.off('routeChangeError', handleComplete)
-        }
-    })
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  });
 
-
-  return( 
+  return (
     <Provider>
-       {loading?<h2>Holaa</h2>:<Component {...pageProps} />} 
+      {/* <Loader/> */}
+      {loading ? <Loader /> : <Component {...pageProps} />}
     </Provider>
-    )
-  ;
+  );
 }
