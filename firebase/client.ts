@@ -1,6 +1,7 @@
 
 import firebase from 'firebase/app';
 import 'firebase/auth'
+import 'firebase/messaging'
 
 export const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -38,6 +39,19 @@ export const signupEmail = async (email:string, password:string) =>  {
     return await firebase.auth().createUserWithEmailAndPassword(email,password);
 }
 
+export const askForPermissioToReceiveNotifications = async () => {
+    try {
+      const messaging = firebase.messaging();
+      await Notification.requestPermission()
+    //   await messaging.requestPermission();
+      const token = await messaging.getToken();
+      console.log('token do usuário:', token);
+      
+      return token;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
 export default firebase;
