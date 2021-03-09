@@ -2,7 +2,7 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 
 firebase.initializeApp({
-    messagingSenderId: process.env.FIREBASE_SENDER_ID
+    messagingSenderId:"685352177305"
 });
 
 const messaging = firebase.messaging();
