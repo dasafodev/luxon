@@ -2,8 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*":["app/components/*"],
-      "@fire-client":["firebase/client.ts"],
+      "@components/*": [
+        "app/components/*"
+      ],
+      "@fire-client": [
+        "firebase/client.ts"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -20,9 +24,19 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "firebase.config.js"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "firebase.config.js"
+  ]
 }
