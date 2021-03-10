@@ -1,5 +1,5 @@
-describe("Home page", () => {
-  it("just an example", () => {
+describe('Home page', () => {
+  it('just an example', () => {
     expect(true).toBeTruthy();
   });
 });

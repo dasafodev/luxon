@@ -1,10 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-import db from "../../../utils/database";
+import db from '../../../utils/database';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const teamsRef = db.collection("teams");
+    const teamsRef = db.collection('teams');
     const snapshot = await teamsRef.get();
 
     const teams = [];

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function useDimensions() {
   const [dimensions, setDimensions] = useState({
@@ -16,7 +16,6 @@ function useDimensions() {
   }
 
   useEffect(() => {
-
     setDimensions(() => {
       return {
         width: window.innerWidth,
@@ -24,10 +23,10 @@ function useDimensions() {
       };
     });
 
-    window.addEventListener("resize", resizeHandler);
+    window.addEventListener('resize', resizeHandler);
 
     return () => {
-      window.removeEventListener("resize", resizeHandler);
+      window.removeEventListener('resize', resizeHandler);
     };
   }, []);
 
