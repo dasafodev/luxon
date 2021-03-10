@@ -5,7 +5,7 @@ import styles from "./footer.module.css";
 const Footer = () => {
 	return (
 		<footer className={styles.footer}>
-			<p className={styles.p}>Diseñado &amp; desarrollado con &#128154; por:</p>
+			<p className={styles.p}>Diseñado &amp; Desarrollado con &#128154; por:</p>
 			<Link href="https://github.com/MaoRguez">
 				<a className={styles.a} target="_blank">
 					@Mauricio Rodriguez
