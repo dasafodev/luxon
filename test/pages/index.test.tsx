@@ -3,3 +3,5 @@ describe('Home page', () => {
     expect(true).toBeTruthy();
   });
 });
+
+export {};
