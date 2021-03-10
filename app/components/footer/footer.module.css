@@ -1,14 +1,12 @@
 .footer {
 	position: absolute;
-	position: absolute;
 	bottom: 0;
-	/* right: 0; */
-	/* left: 0; */
 	height: 70px;
-	padding: 0 30px;
+	padding: 0 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	/* margin-top: 3rem; */
 }
 
 .a,
@@ -17,4 +15,30 @@
 	margin: 0 1rem;
 	font-size: 1.2rem;
 	text-decoration: none;
+}
+
+@media (max-width: 950px) {
+	.a,
+	.p {
+		font-size: 1rem;
+		margin: 0 0.7rem;
+	}
+	.footer {
+		margin-top: 3rem;
+		position: relative;
+	}
+}
+
+@media (max-width: 760px) {
+	.a,
+	.p {
+		font-size: 0.7rem;
+		padding: 0;
+	}
+	.footer {
+		justify-content: center;
+		margin-top: 10rem;
+		position: relative;
+		bottom: 72px;
+	}
 }
