@@ -14,7 +14,7 @@
   z-index: 1;
 }
 
-.search_bar input[type="search"] {
+.search_bar input[type='search'] {
   width: 100%;
   background: #072155;
   border: 1px solid #3092cd;
