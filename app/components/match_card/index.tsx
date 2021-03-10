@@ -2,70 +2,69 @@ import Image from "next/image";
 import React from "react";
 import styles from "./match_card.module.css";
 import { useAppActions, useAppContext } from "app/context/state";
+import firebase, { currentUser } from "@fire-client";
+import "firebase/firestore";
 import axios from "axios";
 
 const dislikeIcon = "/images/icons/dislike.png";
 const likeIcon = "/images/icons/like.png";
 
 const createEvent = (homeTeamName, awayTeamName, fullHour) => {
-  let url = (window.location.hostname=='localhost')?'http://localhost:3000':`https://${window.location.hostname}`
-  axios({
-    url: `${url}/api/calendar`, //your url
-    method: 'POST',
-    responseType: 'blob', // important
-    data: {
-      "start": fullHour,
-      "title": `${homeTeamName} vs ${awayTeamName}`
-    }
-  }).then((response) => {
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'calendar.ics'); //or any other extension
-    document.body.appendChild(link);
-    link.click();
-  });
-
-}
-
+	let url =
+		window.location.hostname == "localhost"
+			? "http://localhost:3000"
+			: `https://${window.location.hostname}`;
+	axios({
+		url: `${url}/api/calendar`, //your url
+		method: "POST",
+		responseType: "blob", // important
+		data: {
+			start: fullHour,
+			title: `${homeTeamName} vs ${awayTeamName}`,
+		},
+	}).then((response) => {
+		const url = window.URL.createObjectURL(new Blob([response.data]));
+		const link = document.createElement("a");
+		link.href = url;
+		link.setAttribute("download", "calendar.ics"); //or any other extension
+		document.body.appendChild(link);
+		link.click();
+	});
+};
 
 const MatchCard = ({
-
-  id,
-  hour,
-  fullHour,
-  competition,
-  homeTeamImageUrl,
-  homeTeamName,
-  awayTeamImageUrl,
-  awayTeamName,
-  status,
-
+	id,
+	hour,
+	fullHour,
+	competition,
+	homeTeamImageUrl,
+	homeTeamName,
+	awayTeamImageUrl,
+	awayTeamName,
+	status,
 }) => {
 	const { favorites } = useAppContext();
 	const { addMatchToFavorites, deleteMatchToFavorites } = useAppActions();
-
 
 	return (
 		<div className={styles.card}>
 			<button
 				className={styles.like_icon}
 				onClick={() => {
-					if (!favorites.some((match) => match.id == id)) {
-            createEvent(homeTeamName, awayTeamName, fullHour)
-						addMatchToFavorites({
-							id,
-							hour,
-							competition,
-							homeTeamImageUrl,
-							homeTeamName,
-							awayTeamImageUrl,
-							awayTeamName,
-							status,
-						});
-					} else {
-						deleteMatchToFavorites(id);
-					}
+					clickInHeart(
+						favorites,
+						id,
+						homeTeamName,
+						awayTeamName,
+						fullHour,
+						addMatchToFavorites,
+						hour,
+						competition,
+						homeTeamImageUrl,
+						awayTeamImageUrl,
+						status,
+						deleteMatchToFavorites
+					);
 				}}
 			>
 				{favorites.some((match) => match.id == id) ? (
@@ -101,3 +100,51 @@ const Team = ({ imageUrl, name }) => {
 		</div>
 	);
 };
+
+function clickInHeart(
+	favorites: any,
+	id: any,
+	homeTeamName: any,
+	awayTeamName: any,
+	fullHour: any,
+	addMatchToFavorites: any,
+	hour: any,
+	competition: any,
+	homeTeamImageUrl: any,
+	awayTeamImageUrl: any,
+	status: any,
+	deleteMatchToFavorites: any
+) {
+	if (!favorites.some((match) => match.id == id)) {
+		const user: firebase.User = currentUser();
+		const db = firebase.firestore();
+		db.collection("users")
+			.doc(user.uid)
+			.get()
+			.then((doc) => {
+				console.log(doc.data());
+				const favorites = doc.data()["favorite"];
+				console.log(favorites);
+				db.collection("users")
+					.doc(user.uid)
+					.set({
+						favorite: [...(favorites as Array<Number>), id],
+					})
+					.then(() => console.log("ID Guardado"));
+			});
+
+		createEvent(homeTeamName, awayTeamName, fullHour);
+		addMatchToFavorites({
+			id,
+			hour,
+			competition,
+			homeTeamImageUrl,
+			homeTeamName,
+			awayTeamImageUrl,
+			awayTeamName,
+			status,
+		});
+	} else {
+		deleteMatchToFavorites(id);
+	}
+}
