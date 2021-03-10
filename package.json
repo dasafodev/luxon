@@ -47,9 +47,9 @@
     }
   },
   "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
+    "*.@(ts|tsx|js|jsx)": [
+      "npm run lint",
+      "npm run format"
     ]
   }
 }
