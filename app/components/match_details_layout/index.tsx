@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './match_details_layout.module';
+import styles from './match_details_layout.module.css';
 
 const MatchDetails = () => {
   return (
