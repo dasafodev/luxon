@@ -98,7 +98,7 @@ const Team = ({ imageUrl, name }) => {
   );
 };
 
-function clickInHeart(
+async function clickInHeart(
   favorites: any,
   id: any,
   homeTeamName: any,
@@ -112,24 +112,13 @@ function clickInHeart(
   status: any,
   deleteMatchToFavorites: any,
 ) {
-  if (!favorites.some((match) => match.id == id)) {
-    const user: firebase.User = currentUser();
-    const db = firebase.firestore();
-    db.collection('users')
-      .doc(user.uid)
-      .get()
-      .then((doc) => {
-        console.warn(doc.data());
-        const favoritesMatches = doc.data()['favorite'];
-        console.warn(favoritesMatches);
-        db.collection('users')
-          .doc(user.uid)
-          .set({
-            favorite: [...(favoritesMatches as Array<number>), id],
-          })
-          .then(() => console.warn('ID Guardado'));
-      });
+  const user: firebase.User = currentUser();
+  const db = firebase.firestore();
+  const document: firebase.firestore.DocumentReference<firebase.firestore.DocumentData> = db
+    .collection('users')
+    .doc(user.uid);
 
+  if (!favorites.some((match) => match.id == id)) {
     createEvent(homeTeamName, awayTeamName, fullHour);
     addMatchToFavorites({
       id,
@@ -141,7 +130,33 @@ function clickInHeart(
       awayTeamName,
       status,
     });
+
+    const data: firebase.firestore.DocumentData = (await document.get()).data();
+    if (data != undefined) {
+      const oldArray = data['favorites'] as Array<number>;
+      if (!oldArray.includes(id)) {
+        oldArray.push(id);
+        document.set({
+          favorites: oldArray,
+        });
+      }
+    } else {
+      document.set({
+        favorites: [id],
+      });
+    }
   } else {
     deleteMatchToFavorites(id);
+    const data: firebase.firestore.DocumentData = (await document.get()).data();
+    if (data != undefined) {
+      const oldArray = data['favorites'] as Array<number>;
+      const index = oldArray.indexOf(id);
+      if (index != -1) {
+        oldArray.splice(index, 1);
+        document.set({
+          favorites: oldArray,
+        });
+      }
+    }
   }
 }
