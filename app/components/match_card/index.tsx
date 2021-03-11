@@ -2,6 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import styles from './match_card.module.css';
 import { useAppActions, useAppContext } from 'app/context/state';
+import firebase, { currentUser } from '@fire-client';
+import 'firebase/firestore';
 import axios from 'axios';
 
 const dislikeIcon = '/images/icons/dislike.png';
@@ -46,21 +48,20 @@ const MatchCard = ({
       <button
         className={styles.like_icon}
         onClick={() => {
-          if (!favorites.some((match) => match.id == id)) {
-            createEvent(homeTeamName, awayTeamName, fullHour);
-            addMatchToFavorites({
-              id,
-              hour,
-              competition,
-              homeTeamImageUrl,
-              homeTeamName,
-              awayTeamImageUrl,
-              awayTeamName,
-              status,
-            });
-          } else {
-            deleteMatchToFavorites(id);
-          }
+          clickInHeart(
+            favorites,
+            id,
+            homeTeamName,
+            awayTeamName,
+            fullHour,
+            addMatchToFavorites,
+            hour,
+            competition,
+            homeTeamImageUrl,
+            awayTeamImageUrl,
+            status,
+            deleteMatchToFavorites,
+          );
         }}
       >
         {favorites.some((match) => match.id == id) ? (
@@ -96,3 +97,66 @@ const Team = ({ imageUrl, name }) => {
     </div>
   );
 };
+
+async function clickInHeart(
+  favorites: any,
+  id: any,
+  homeTeamName: any,
+  awayTeamName: any,
+  fullHour: any,
+  addMatchToFavorites: any,
+  hour: any,
+  competition: any,
+  homeTeamImageUrl: any,
+  awayTeamImageUrl: any,
+  status: any,
+  deleteMatchToFavorites: any,
+) {
+  const user: firebase.User = currentUser();
+  const db = firebase.firestore();
+  const document: firebase.firestore.DocumentReference<firebase.firestore.DocumentData> = db
+    .collection('users')
+    .doc(user.uid);
+
+  if (!favorites.some((match) => match.id == id)) {
+    createEvent(homeTeamName, awayTeamName, fullHour);
+    addMatchToFavorites({
+      id,
+      hour,
+      competition,
+      homeTeamImageUrl,
+      homeTeamName,
+      awayTeamImageUrl,
+      awayTeamName,
+      status,
+    });
+
+    const data: firebase.firestore.DocumentData = (await document.get()).data();
+    if (data != undefined) {
+      const oldArray = data['favorites'] as Array<number>;
+      if (!oldArray.includes(id)) {
+        oldArray.push(id);
+        document.set({
+          favorites: oldArray,
+        });
+      }
+    } else {
+      document.set({
+        favorites: [id],
+      });
+    }
+  } else {
+    deleteMatchToFavorites(id);
+    const data: firebase.firestore.DocumentData = (await document.get()).data();
+    if (data != undefined) {
+      const oldArray = data['favorites'] as Array<number>;
+      const index = oldArray.indexOf(id);
+      if (index != -1) {
+        oldArray.splice(index, 1);
+        document.set({
+          favorites: oldArray,
+        });
+      }
+    }
+  }
+}
