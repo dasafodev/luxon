@@ -2,6 +2,29 @@
   font-size: 3rem;
 }
 
+.container {
+  height: calc(100vh - 70px);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.containerTeam {
+  justify-self: center;
+  align-self: center;
+}
+
+.nameTeam {
+  font-size: 2rem;
+}
+
+.buttonVideoCall {
+  border: 1px solid var(--fucsia);
+  width: 9.42rem;
+  height: 5.67rem;
+}
+
 .time {
   display: flex;
   flex-direction: column;
@@ -11,7 +34,4 @@
 .competition {
   font-size: 1rem;
   color: #949494;
-}
-
-.rightTeam {
 }
