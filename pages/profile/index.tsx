@@ -1,5 +1,6 @@
 import NavBar from '@components/navbar';
 import Image from 'next/image';
+import Footer from '@components/footer';
 import React, { useState } from 'react';
 import styles from './profile.module.css';
 import firebase from '@fire-client';
@@ -37,6 +38,7 @@ const Profile = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   );
 };

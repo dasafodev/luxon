@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import NavBar from '../app/components/navbar';
+import Footer from '../app/components/footer';
 import '../firebase/client';
 import styles from '../app/styles/index.module.css';
 import MatchCard from '../app/components/match_card';
@@ -60,6 +61,7 @@ const Home = ({ matches }) => {
             />
           ))}
         </section>
+        <Footer />
       </main>
     </React.Fragment>
   );
