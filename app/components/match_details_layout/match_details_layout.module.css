@@ -27,13 +27,18 @@
 }
 
 .containerLogoTeam {
+  border: 1px solid red;
   height: 11.67rem;
   width: 11.67rem;
 }
+.figure {
+  padding: 0;
+  margin: 0;
+}
 
 .logoTeam {
-  height: 11.67rem;
-  width: 11.67rem;
+  /* height: 11.67rem;
+  width: 11.67rem; */
 }
 
 .nameTeam {
@@ -50,7 +55,6 @@
 
 .time {
   padding-top: 5rem;
-  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,15 +65,23 @@
 }
 
 .competition {
-  border: 1px solid red;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #949494;
 }
 
 .containerPlayers {
   display: flex;
+  align-items: center;
 }
 
 .containerPlayers p {
-  padding: 1rem;
+  margin: 0 1rem;
+}
+
+.playerName {
+  font-size: 2rem;
+}
+
+.playerPosition {
+  font-size: 1.5rem;
 }

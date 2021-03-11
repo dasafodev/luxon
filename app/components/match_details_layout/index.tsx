@@ -12,7 +12,7 @@ const MatchDetails = () => {
           </figure>
           <h2 className={styles.nameTeam}>FC Barcelona </h2>
           <button className={styles.buttonVideoCall} type='button'>
-            <figure>
+            <figure className={styles.figure}>
               <img
                 src='../../../public/images/icons/videoConference.png'
                 alt='Video conference with fans around the world'
@@ -36,12 +36,14 @@ const MatchDetails = () => {
           </figure>
           <h2 className={styles.nameTeam}>Real Madrid </h2>
           <button className={styles.buttonVideoCall} type='button'>
-            <img
-              src='../../../public/images/icons/videoConference.png'
-              alt='Video conference with fans around the world'
-              width={50}
-              height={50}
-            />
+            <figure className={styles.figure}>
+              <img
+                src='../../../public/images/icons/videoConference.png'
+                alt='Video conference with fans around the world'
+                width={50}
+                height={50}
+              />
+            </figure>
           </button>
           <div className={styles.containerPlayers}>
             <p className={styles.playerName}>Player name</p>
