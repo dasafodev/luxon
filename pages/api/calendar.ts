@@ -1,26 +1,25 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import moment from "moment";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import moment from 'moment';
 import ical from 'ical-generator';
 
 const cal = ical({
   domain: 'luxxon.vercel.com',
-  prodId: {company: 'luxxoncorp.com', product: 'ical-generator'},
+  prodId: { company: 'luxxoncorp.com', product: 'ical-generator' },
   name: 'Luxxon Calendar',
 });
 
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method == "POST") {
+  if (req.method == 'POST') {
     try {
-      let startHour  = req.body["start"];
-      let title = req.body["title"]
-      const evento = cal.createEvent({
+      const startHour = req.body['start'];
+      const title = req.body['title'];
+      cal.createEvent({
         start: moment(startHour),
         end: moment(startHour).add(2, 'hour'),
         summary: title,
-        organizer: 'Organizer\'s LuxonCorp <luxxoncorp@luxxon.com>'
-    });
-    cal.serve(res)
+        organizer: "Organizer's LuxonCorp <luxxoncorp@luxxon.com>",
+      });
+      cal.serve(res);
     } catch (e) {
       return res.status(400).json({
         statusCode: 400,
@@ -30,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     return res.status(404).json({
       statusCode: 400,
-      error: "Not found",
+      error: 'Not found',
     });
   }
 };
