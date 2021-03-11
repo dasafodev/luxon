@@ -13,8 +13,6 @@ const Custom404 = () => {
           <a href='/'>página principal</a>
         </Link>
       </div>
-
-      <img src='../public/images/img404.jpg' alt='Woman with yellow ball' />
     </div>
   );
 };
