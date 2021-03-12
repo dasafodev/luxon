@@ -90,5 +90,6 @@
 @media (max-width: 758px) {
   .content {
     grid-template-rows: 1fr;
+    height: 100%;
   }
 }
