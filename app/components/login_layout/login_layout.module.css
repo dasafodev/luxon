@@ -1,8 +1,9 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 5.8rem);
   width: 100vw;
-  background-image: url('/public/images/img404.jpg');
+  background-image: var(--gradient-image), url('../../../public/images/background.webp');
   background-size: cover;
   background-position: right top;
 }
