@@ -2,12 +2,11 @@
   position: absolute;
   bottom: 0;
   height: 70px;
-  width: 80%;
+  width: 96vw;
   padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  /* margin-top: 3rem; */
 }
 
 .a,

@@ -3,7 +3,7 @@ import styles from './match_details_layout.module.css';
 
 const MatchDetails = () => {
   return (
-    <div className={styles.bigContainer}>
+    <div>
       <h1 className={styles.title}>Información del partido</h1>
       <div className={styles.container}>
         <div className={styles.containerTeam}>
