@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 
 const Signup = () => {
   const router = useRouter();
-  const [fireUser, setFireUser] = useState<fire.User>(fire.auth().currentUser);
+  const [, setFireUser] = useState<fire.User>(fire.auth().currentUser);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,12 +24,13 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged((user) => setFireUser(user));
-
-    if (!fireUser) {
-      router.replace('/login');
-    }
-  }, [fireUser]);
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setFireUser(user);
+        router.replace('/');
+      }
+    });
+  }, []);
 
   return (
     <LoginLayout>

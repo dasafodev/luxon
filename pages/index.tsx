@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      matches: data.matches,
+      matches: data.statusCode !== 400 ? data.matches : [],
     },
   };
 }

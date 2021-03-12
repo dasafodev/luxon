@@ -15,15 +15,17 @@ const Favorites = () => {
 
   const router = useRouter();
 
-  const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
+  const [, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => setFireUser(user));
-
-    if (!fireUser) {
-      router.replace('/');
-    }
-  }, [fireUser]);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setFireUser(user);
+      } else {
+        router.replace('/login');
+      }
+    });
+  }, []);
 
   return (
     <React.Fragment>
