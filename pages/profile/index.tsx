@@ -15,7 +15,7 @@ const Profile = () => {
     firebase.auth().onAuthStateChanged((user) => setFireUser(user));
 
     if (!fireUser) {
-      router.replace('/');
+      router.replace('/login');
     }
   }, [fireUser]);
 
