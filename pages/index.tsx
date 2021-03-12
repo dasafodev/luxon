@@ -51,7 +51,7 @@ const Home = ({ matches }) => {
               key={match.id}
               id={match.id}
               fullHour={match.utcDate}
-              hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
+              hour={DateTime.fromISO(match.utcDate).setLocale('en-US').toFormat('t')}
               competition={match.competition.name}
               homeTeamName={match.homeTeam.shortName}
               homeTeamImageUrl={match.homeTeam.crestUrl}
