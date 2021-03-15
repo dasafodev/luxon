@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      matches: data.matches,
+      matches: data.statusCode !== 400 ? data.matches : [],
     },
   };
 }
@@ -46,12 +46,12 @@ const Home = ({ matches }) => {
       <main className={styles.main}>
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
-          {matchess.map((match) => (
+          {matchess?.map((match) => (
             <MatchCard
               key={match.id}
               id={match.id}
               fullHour={match.utcDate}
-              hour={DateTime.fromISO(match.utcDate).toLocaleString(DateTime.TIME_SIMPLE)}
+              hour={DateTime.fromISO(match.utcDate).setLocale('en-US').toFormat('t')}
               competition={match.competition.name}
               homeTeamName={match.homeTeam.shortName}
               homeTeamImageUrl={match.homeTeam.crestUrl}

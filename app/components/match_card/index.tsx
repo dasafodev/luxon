@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import React from 'react';
 import styles from './match_card.module.css';
 import { useAppActions, useAppContext } from 'app/context/state';
 import firebase, { currentUser } from '@fire-client';
@@ -40,36 +40,44 @@ const MatchCard = ({
   awayTeamName,
   status,
 }) => {
+  const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
+
   const { favorites } = useAppContext();
   const { addMatchToFavorites, deleteMatchToFavorites } = useAppActions();
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+  }, []);
+
   return (
     <div className={styles.card}>
-      <button
-        className={styles.like_icon}
-        onClick={() => {
-          clickInHeart(
-            favorites,
-            id,
-            homeTeamName,
-            awayTeamName,
-            fullHour,
-            addMatchToFavorites,
-            hour,
-            competition,
-            homeTeamImageUrl,
-            awayTeamImageUrl,
-            status,
-            deleteMatchToFavorites,
-          );
-        }}
-      >
-        {favorites.some((match) => match.id == id) ? (
-          <img src={likeIcon} alt='Filled heart' />
-        ) : (
-          <img src={dislikeIcon} alt='Unfilled heart' />
-        )}
-      </button>
+      {fireUser && (
+        <button
+          className={styles.like_icon}
+          onClick={() => {
+            clickInHeart(
+              favorites,
+              id,
+              homeTeamName,
+              awayTeamName,
+              fullHour,
+              addMatchToFavorites,
+              hour,
+              competition,
+              homeTeamImageUrl,
+              awayTeamImageUrl,
+              status,
+              deleteMatchToFavorites,
+            );
+          }}
+        >
+          {favorites.some((match) => match.id == id) ? (
+            <img src={likeIcon} alt='Filled heart' />
+          ) : (
+            <img src={dislikeIcon} alt='Unfilled heart' />
+          )}
+        </button>
+      )}
 
       <div className={styles.info_container}>
         <p className='bold'>{hour}</p>
