@@ -5,3 +5,5 @@ node_modules
 
 ## Firebase 
 utils/database/serviceAccountKey.json
+# Local Netlify folder
+.netlify

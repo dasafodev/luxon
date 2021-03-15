@@ -1,14 +1,24 @@
+import { useRouter } from 'next/router';
 import NavBar from '@components/navbar';
 import Image from 'next/image';
 import Footer from '@components/footer';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './profile.module.css';
 import firebase from '@fire-client';
 
 const Profile = () => {
+  const router = useRouter();
+
   const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
-  firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+
+    if (!fireUser) {
+      router.replace('/login');
+    }
+  }, [fireUser]);
+
   const [name, setName] = useState(fireUser ? fireUser.displayName : 'Bienvenido');
 
   const onChangeName = (val: React.ChangeEvent<HTMLInputElement>) => {

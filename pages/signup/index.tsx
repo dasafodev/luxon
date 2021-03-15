@@ -1,14 +1,15 @@
 import LoginLayout from '@components/login_layout';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './signup.module.css';
 import Button from '@components/button';
-import { signupEmail } from '@fire-client';
+import fire, { signupEmail } from '@fire-client';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 
 const Signup = () => {
   const router = useRouter();
+  const [, setFireUser] = useState<fire.User>(fire.auth().currentUser);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,6 +22,15 @@ const Signup = () => {
     });
     router.push('/');
   };
+
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setFireUser(user);
+        router.replace('/');
+      }
+    });
+  }, []);
 
   return (
     <LoginLayout>
