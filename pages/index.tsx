@@ -46,7 +46,7 @@ const Home = ({ matches }) => {
       <main className={styles.main}>
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
-          {matchess.map((match) => (
+          {matchess?.map((match) => (
             <MatchCard
               key={match.id}
               id={match.id}
