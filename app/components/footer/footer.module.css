@@ -1,6 +1,7 @@
 .footer {
   bottom: 0;
   height: 70px;
+  width: 96vw;
   padding: 0 2rem;
   display: flex;
   align-items: center;
