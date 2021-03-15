@@ -1,0 +1,56 @@
+.container{
+  display: flex;
+  margin-top: 40px;
+}
+
+.standings{
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+}
+
+.standings .tableHead,
+.standings .teamPosition{
+  color: #878787;
+}
+
+.standings .teamPosition{
+  text-align: left;
+}
+
+.standings tr{
+  border-bottom: 1px solid #dedede;
+  line-height: 2.3em;
+}
+
+.standings tr:last-child{
+  border: none;
+}
+
+.standings td{
+  width: 35px;
+}
+
+.standings .teamName{
+  width: 250px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.crest{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.crest img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.standings .teamPoints{
+  font-weight: bold;
+}

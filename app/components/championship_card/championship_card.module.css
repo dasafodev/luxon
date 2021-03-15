@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: space-around;
+  width: 220px;
+  height: 190px;
+  padding: 15px;
+  background-color: #072155;
+  border-radius: 20px;
+  border: 1px solid white;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+  margin-right: 20px;
+}
+
+.card {
+  display: inline-block;
+  width: 180px;
+  padding-right: 20px;
+  height: 180px;
+  margin: 0 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.emblem {
+  width: 180px;
+  height: 180px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: 0.2s ease;
+}
