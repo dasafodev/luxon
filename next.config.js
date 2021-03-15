@@ -1,6 +1,6 @@
 module.exports = {
+  target: 'serverless',
   images: {
-    target: 'serverless',
     domains: ['crests.football-data.org', 'upload.wikimedia.org'],
   },
 };
