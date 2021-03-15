@@ -1,44 +1,44 @@
-.container{
+.container {
   display: flex;
   margin-top: 40px;
 }
 
-.standings{
+.standings {
   margin: 0 auto;
   border-collapse: collapse;
   font-size: 1.3rem;
 }
 
 .standings .tableHead,
-.standings .teamPosition{
+.standings .teamPosition {
   color: #878787;
 }
 
-.standings .teamPosition{
+.standings .teamPosition {
   text-align: left;
 }
 
-.standings tr{
+.standings tr {
   border-bottom: 1px solid #dedede;
   line-height: 2.3em;
 }
 
-.standings tr:last-child{
+.standings tr:last-child {
   border: none;
 }
 
-.standings td{
+.standings td {
   width: 35px;
 }
 
-.standings .teamName{
+.standings .teamName {
   width: 250px;
   text-align: left;
   display: flex;
   align-items: center;
 }
 
-.crest{
+.crest {
   width: 30px;
   height: 30px;
   margin-right: 10px;
@@ -46,11 +46,11 @@
   justify-content: center;
 }
 
-.crest img{
+.crest img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.standings .teamPoints{
+.standings .teamPoints {
   font-weight: bold;
 }

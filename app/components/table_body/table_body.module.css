@@ -1,6 +1,6 @@
 .standings {
- margin: 0 auto;
- border-collapse: collapse;
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 .standings .tableHead,
 .standings .teamPosition {
