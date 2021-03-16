@@ -26,6 +26,13 @@ const Scorers = () => {
                 crestURI={emblem[0].team.crestUrl}
                 teamName={item.player.name}
                 points={item.numberOfGoals}
+                PlayedGames={null}
+                wins={null}
+                draws={null}
+                losses={null}
+                goalsFor={null}
+                goalsAgainst={null}
+                goalDifference={null}
               />,
             );
           })}
