@@ -20,11 +20,17 @@ const Login = () => {
   };
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
 
     if (fireUser) {
       router.replace('/profile');
     }
+    return () => {
+      unlisten();
+    };
   }, [fireUser]);
 
   return (

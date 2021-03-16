@@ -6,8 +6,8 @@ import firebase, { currentUser } from '@fire-client';
 import 'firebase/firestore';
 import axios from 'axios';
 
-const dislikeIcon = '/images/icons/dislike.png';
-const likeIcon = '/images/icons/like.png';
+// const dislikeIcon = '/images/icons/dislike.png';
+// const likeIcon = '/images/icons/like.png';
 
 const createEvent = (homeTeamName, awayTeamName, fullHour) => {
   const url = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`;
@@ -46,11 +46,18 @@ const MatchCard = ({
   const { addMatchToFavorites, deleteMatchToFavorites } = useAppActions();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
+    return () => {
+      unlisten();
+    };
   }, []);
 
   return (
-    <div className={styles.card}>
+    // <Link href="/details">
+    <div onClick={() => console.warn('pussh')} className={styles.card}>
       {fireUser && (
         <button
           className={styles.like_icon}
@@ -72,9 +79,9 @@ const MatchCard = ({
           }}
         >
           {favorites.some((match) => match.id == id) ? (
-            <img src={likeIcon} alt='Filled heart' />
+            <Image width='28' height='28' src='/images/icons/event.png' alt='Filled heart' />
           ) : (
-            <img src={dislikeIcon} alt='Unfilled heart' />
+            <Image width='28' height='28' src='/images/icons/add-event.png' alt='Unfilled heart' />
           )}
         </button>
       )}
@@ -90,6 +97,7 @@ const MatchCard = ({
       </div>
       <p className={styles.competition}>{status}</p>
     </div>
+    // </Link>
   );
 };
 

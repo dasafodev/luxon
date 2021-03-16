@@ -18,13 +18,17 @@ const Favorites = () => {
   const [, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setFireUser(user);
       } else {
         router.replace('/login');
       }
     });
+
+    return () => {
+      unlisten();
+    };
   }, []);
 
   return (

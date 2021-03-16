@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './navbar.module.css';
 import Image from 'next/image';
@@ -13,8 +13,17 @@ import useDimensions from '../../hooks/useDimensions';
 const NavBar = ({ onChange = null }) => {
   const { width } = useDimensions();
   const router = useRouter();
-  const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
-  firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+  const [fireUser, setFireUser] = useState<firebase.User>();
+
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
+    return () => {
+      unlisten();
+    };
+  }, []);
 
   const LoggedOptions = () => {
     return (
