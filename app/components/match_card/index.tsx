@@ -1,13 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import React from 'react';
 import styles from './match_card.module.css';
 import { useAppActions, useAppContext } from 'app/context/state';
 import firebase, { currentUser } from '@fire-client';
 import 'firebase/firestore';
 import axios from 'axios';
 
-const dislikeIcon = '/images/icons/dislike.png';
-const likeIcon = '/images/icons/like.png';
+// const dislikeIcon = '/images/icons/dislike.png';
+// const likeIcon = '/images/icons/like.png';
 
 const createEvent = (homeTeamName, awayTeamName, fullHour) => {
   const url = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`;
@@ -40,36 +40,51 @@ const MatchCard = ({
   awayTeamName,
   status,
 }) => {
+  const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
+
   const { favorites } = useAppContext();
   const { addMatchToFavorites, deleteMatchToFavorites } = useAppActions();
 
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
+    return () => {
+      unlisten();
+    };
+  }, []);
+
   return (
-    <div className={styles.card}>
-      <button
-        className={styles.like_icon}
-        onClick={() => {
-          clickInHeart(
-            favorites,
-            id,
-            homeTeamName,
-            awayTeamName,
-            fullHour,
-            addMatchToFavorites,
-            hour,
-            competition,
-            homeTeamImageUrl,
-            awayTeamImageUrl,
-            status,
-            deleteMatchToFavorites,
-          );
-        }}
-      >
-        {favorites.some((match) => match.id == id) ? (
-          <img src={likeIcon} alt='Filled heart' />
-        ) : (
-          <img src={dislikeIcon} alt='Unfilled heart' />
-        )}
-      </button>
+    // <Link href="/details">
+    <div onClick={() => console.warn('pussh')} className={styles.card}>
+      {fireUser && (
+        <button
+          className={styles.like_icon}
+          onClick={() => {
+            clickInHeart(
+              favorites,
+              id,
+              homeTeamName,
+              awayTeamName,
+              fullHour,
+              addMatchToFavorites,
+              hour,
+              competition,
+              homeTeamImageUrl,
+              awayTeamImageUrl,
+              status,
+              deleteMatchToFavorites,
+            );
+          }}
+        >
+          {favorites.some((match) => match.id == id) ? (
+            <Image width='28' height='28' src='/images/icons/event.png' alt='Filled heart' />
+          ) : (
+            <Image width='28' height='28' src='/images/icons/add-event.png' alt='Unfilled heart' />
+          )}
+        </button>
+      )}
 
       <div className={styles.info_container}>
         <p className='bold'>{hour}</p>
@@ -82,6 +97,7 @@ const MatchCard = ({
       </div>
       <p className={styles.competition}>{status}</p>
     </div>
+    // </Link>
   );
 };
 

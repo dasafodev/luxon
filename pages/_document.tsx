@@ -15,6 +15,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script src='https://meet.jit.si/external_api.js'></script>
         </body>
       </Html>
     );

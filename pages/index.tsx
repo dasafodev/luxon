@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import NavBar from '../app/components/navbar';
+import Footer from '../app/components/footer';
 import '../firebase/client';
 import styles from '../app/styles/index.module.css';
 import MatchCard from '../app/components/match_card';
@@ -19,7 +20,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      matches: data.matches,
+      matches: data.statusCode !== 400 ? data.matches : [],
     },
   };
 }
@@ -45,7 +46,7 @@ const Home = ({ matches }) => {
       <main className={styles.main}>
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
         <section className={styles.cards_container}>
-          {matchess.map((match) => (
+          {matchess?.map((match) => (
             <MatchCard
               key={match.id}
               id={match.id}
@@ -60,6 +61,7 @@ const Home = ({ matches }) => {
             />
           ))}
         </section>
+        <Footer />
       </main>
     </React.Fragment>
   );

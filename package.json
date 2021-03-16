@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "test": "jest",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
@@ -26,7 +26,8 @@
     "moment": "^2.29.1",
     "next": "^10.0.7",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-jutsu": "^3.0.2"
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.5",
@@ -58,5 +59,8 @@
       "npm run lint",
       "npm run format"
     ]
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }

@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { DateTime } from 'luxon';
+import firebase from '@fire-client';
 import NavBar from '../../app/components/navbar';
+import Footer from '../../app/components/footer';
 import '../../firebase/client';
 import styles from '../../app/styles/index.module.css';
 import MatchCard from '../../app/components/match_card';
+
 import { useAppContext } from 'app/context/state';
 
 const Favorites = () => {
   const { favorites } = useAppContext();
+
+  const router = useRouter();
+
+  const [, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
+
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setFireUser(user);
+      } else {
+        router.replace('/login');
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -30,6 +52,7 @@ const Favorites = () => {
             />
           ))}
         </section>
+        <Footer />
       </main>
     </React.Fragment>
   );

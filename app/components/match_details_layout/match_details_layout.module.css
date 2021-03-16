@@ -1,0 +1,79 @@
+.title {
+  margin-top: 0;
+  padding-top: 2rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.container {
+  height: calc(98vh - 11.67rem);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.containerTeam {
+  height: calc(70vh - 11.67rem);
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerLogoTeam {
+  height: 11.67rem;
+  width: 11.67rem;
+}
+.figure {
+  padding: 0;
+  margin: 0;
+}
+
+.nameTeam {
+  font-size: 2rem;
+}
+
+.buttonVideoCall {
+  border: 1px solid var(--fucsia);
+  width: 9.42rem;
+  height: 5.67rem;
+  background-color: #051940;
+  margin-bottom: 1rem;
+}
+
+.time {
+  height: calc(90vh - 11.67rem);
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeHour {
+  font-size: 3rem;
+}
+
+.competition {
+  font-size: 1.6rem;
+  color: #949494;
+}
+
+.containerPlayers {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+
+.containerPlayers p {
+  margin: 0 1rem;
+}
+
+.playerName {
+  height: 2.8rem;
+  font-size: 2rem;
+}
+
+.playerPosition {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}

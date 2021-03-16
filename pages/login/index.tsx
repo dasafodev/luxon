@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './login.module.css';
 import Button from '@components/button';
 import Link from 'next/link';
 import LoginLayout from '@components/login_layout';
-import { loginWithEmail } from '@fire-client';
+import firebase, { loginWithEmail } from '@fire-client';
 import { useRouter } from 'next/router';
 
 const Login = () => {
+  const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
+
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -16,6 +18,20 @@ const Login = () => {
     await loginWithEmail(email, password);
     router.push('/');
   };
+
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
+
+    if (fireUser) {
+      router.replace('/profile');
+    }
+    return () => {
+      unlisten();
+    };
+  }, [fireUser]);
 
   return (
     <LoginLayout>

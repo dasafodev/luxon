@@ -1,13 +1,36 @@
+import { useRouter } from 'next/router';
 import NavBar from '@components/navbar';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import Footer from '@components/footer';
+import React, { useState, useEffect } from 'react';
 import styles from './profile.module.css';
-import firebase from '@fire-client';
+import firebase, { signOut } from '@fire-client';
+import Button from '@components/button';
 
 const Profile = () => {
+  const router = useRouter();
+
   const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
-  firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged(
+      (user) => setFireUser(user),
+      (err) => console.warn(err),
+    );
+    if (!fireUser) {
+      router.replace('/login');
+    }
+
+    return () => {
+      unlisten();
+    };
+  }, [fireUser]);
+
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
+
+  // }, [fireUser]);
+
   const [name, setName] = useState(fireUser ? fireUser.displayName : 'Bienvenido');
 
   const onChangeName = (val: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +38,11 @@ const Profile = () => {
     firebase.auth().currentUser.updateProfile({
       displayName: val.target.value,
     });
+  };
+
+  const logout = () => {
+    router.replace('/');
+    signOut();
   };
 
   return (
@@ -35,8 +63,12 @@ const Profile = () => {
           <p className={styles.info}>
             <strong className={styles.info_highlight}>Email: </strong> {fireUser ? fireUser.email : ''}
           </p>
+          <Button onClick={logout} customeStyle={styles.logout_button}>
+            Cerrar sesión
+          </Button>
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   );
 };
