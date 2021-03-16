@@ -18,6 +18,7 @@ const Standings = () => {
           {positions.map((item) => {
             rows.push(
               <Row
+                goalsTable={false}
                 key={item.position}
                 position={item.position}
                 crestURI={item.team.crestUrl}

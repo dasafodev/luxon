@@ -20,7 +20,7 @@ const Scorers = () => {
             const emblem = positions.filter((position) => position.team.id === item.team.id);
             rows.push(
               <Row
-                goalsTable
+                goalsTable={true}
                 key={item.player.id}
                 position={(count = count + 1)}
                 crestURI={emblem[0].team.crestUrl}

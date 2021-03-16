@@ -19,6 +19,9 @@ const NavBar = ({ onChange = null }) => {
   const LoggedOptions = () => {
     return (
       <ul className={styles.list}>
+        <Button onClick={() => router.push('/competition')} secondary={true}>
+          Competiciones
+        </Button>
         <Button onClick={() => router.push('/favorites')} secondary={true}>
           Favoritos
         </Button>
