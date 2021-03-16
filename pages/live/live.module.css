@@ -26,7 +26,7 @@
   margin-left: 10px;
   border: 1px solid #3092cd;
   position: relative;
-  padding-bottom: 56.25%;
+  /* padding-bottom: 56.25%; */
 }
 
 .stream iframe {
