@@ -8,7 +8,8 @@ import GameCard from '@components/game_card';
 import ScrollSlider from '@components/scroll_slider';
 
 const Competition = () => {
-  const { games } = useAppContext();
+  const { games, positions } = useAppContext();
+  const cardMatch = [];
 
   return (
     <React.Fragment>
@@ -32,17 +33,26 @@ const Competition = () => {
           </ul>
         </nav>
         <section className={stylesCompetition.cards_container}>
-          {games.map((game) => (
-            <GameCard
-              key={game.id}
-              homeTeamName={game.homeTeam.name}
-              awayTeamName={game.awayTeam.name}
-              scoreHomeTeam={game.score.fullTime.homeTeam}
-              scoreAwayTeam={game.score.fullTime.awayTeam}
-              status={game.status}
-              matchday={game.matchday}
-            />
-          ))}
+          {games.map((game) => {
+            const emblemHome = positions.filter((position) => position.team.id === game.homeTeam.id);
+            const emblemAway = positions.filter((item) => item.team.id === game.awayTeam.id);
+            if (emblemHome.length === 1) {
+              cardMatch.push(
+                <GameCard
+                  key={game.id}
+                  crestUrlHome={emblemHome[0].team.crestUrl}
+                  homeTeamName={game.homeTeam.name}
+                  awayTeamName={game.awayTeam.name}
+                  crestUrlAway={emblemAway[0].team.crestUrl}
+                  scoreHomeTeam={game.score.fullTime.homeTeam}
+                  scoreAwayTeam={game.score.fullTime.awayTeam}
+                  status={game.status}
+                  matchday={game.matchday}
+                />,
+              );
+            }
+          })}
+          {cardMatch}
         </section>
       </section>
     </React.Fragment>

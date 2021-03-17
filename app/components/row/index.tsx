@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from '../../../pages/competition/standings/standings.module.css';
 
 const Row = ({
@@ -20,7 +21,7 @@ const Row = ({
       <td className={styles.teamPosition}>{position}</td>
       <td className={styles.teamName}>
         <div className={styles.crest}>
-          <img src={crestURI} alt='' />
+          <Image src={crestURI} alt='' width={30} height={30} />
         </div>
         <span>{teamName}</span>
       </td>

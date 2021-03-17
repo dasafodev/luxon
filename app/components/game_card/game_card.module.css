@@ -14,25 +14,62 @@
   -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
 }
-.card_container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-}
-
 .info_container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.card_container {
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 0.4fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0rem 1rem;
+  height: 50%;
+  width: 100%;
+}
+.one, .two, .three, .four, .five, .six {
+  align-self: center;
+}
+.one {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-self: center;
+}
+.two {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.three {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.four {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  justify-self: center;
+}
+.five {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.six {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
 .teams_container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 70%;
+}
+
+.teamShield_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .score_container {
@@ -44,13 +81,14 @@
 }
 
 .team_name {
-  font-size: 1.3rem;
-  margin-top: 0.7rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-left: 0.7rem;
 }
 
 .team_score {
-  font-size: 1.3rem;
-  margin-top: 0.7rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
 
 .status {
