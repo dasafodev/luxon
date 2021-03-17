@@ -28,7 +28,12 @@
   height: 50%;
   width: 100%;
 }
-.one, .two, .three, .four, .five, .six {
+.one,
+.two,
+.three,
+.four,
+.five,
+.six {
   align-self: center;
 }
 .one {
