@@ -13,27 +13,15 @@ const ScrollSlider = () => {
   };
 
   const fetchData = async () => {
-    const response = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/matches/`, {
-      headers: {
-        'X-Auth-Token': process.env.NEXT_PUBLIC_FOOTBALL_DATA_API_KEY,
-      },
-    });
+    const response = await fetch(`/api/competitions/${idCode}/matches`);
     const data = await response.json();
     setGames(data.matches);
 
-    const res = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/standings/`, {
-      headers: {
-        'X-Auth-Token': process.env.NEXT_PUBLIC_FOOTBALL_DATA_API_KEY,
-      },
-    });
+    const res = await fetch(`/api/competitions/${idCode}/standings/`);
     const positionsTable = await res.json();
     setPositions(positionsTable.standings[0].table);
 
-    const resScorers = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/scorers/`, {
-      headers: {
-        'X-Auth-Token': process.env.NEXT_PUBLIC_FOOTBALL_DATA_API_KEY,
-      },
-    });
+    const resScorers = await fetch(`/api/competitions/${idCode}/scorers/`);
     const goalScorer = await resScorers.json();
     setScorers(goalScorer.scorers);
   };

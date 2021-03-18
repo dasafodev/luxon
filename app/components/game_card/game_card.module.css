@@ -36,7 +36,8 @@
 .six {
   align-items: center;
 }
-.one, .four {
+.one,
+.four {
   height: 40px;
   width: 40px;
   background: white;
