@@ -39,7 +39,7 @@ const ScrollSlider = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData().then();
   }, [idCode]);
 
   return (
