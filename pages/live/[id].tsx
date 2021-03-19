@@ -31,6 +31,18 @@ const Live = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        router.replace('/login');
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, []);
+
+  useEffect(() => {
     const unsubscribe = db
       .collection('lives')
       .doc(`${router.query.id}`)
