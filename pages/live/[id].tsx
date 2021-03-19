@@ -43,27 +43,30 @@ const Live = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('lives')
-      .doc(`${router.query.id}`)
-      .collection('messages')
-      .orderBy('createdAt', 'desc')
-      .limit(1)
-      .onSnapshot((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setMessages((prevState) => {
-          if (prevState.some((doc) => doc.id === data[0]?.id)) {
-            return prevState;
-          }
-          return [...prevState, ...data];
-        });
-      });
+    let unsubscribe;
+    if (router.query.id !== undefined) {
+      unsubscribe = db
+        .collection('lives')
+        .doc(`${router.query.id}`)
+        .collection('messages')
+        .orderBy('createdAt', 'desc')
+        .limit(1)
+        .onSnapshot(
+          (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              if (!doc.metadata.hasPendingWrites) {
+                setMessages((prevState) => [...prevState, { id: doc.id, ...doc.data() }]);
+              }
+            });
+          },
+          (error) => {
+            console.error(error);
+          },
+        );
+    }
 
     return unsubscribe;
-  }, []);
+  }, [router.query.id]);
 
   const handleChange = (event) => {
     setCurrentMessage(event.target.value);
@@ -74,14 +77,11 @@ const Live = (): JSX.Element => {
 
     const trimmedMessage = currentMessage.trim();
     if (trimmedMessage) {
-      db.collection('lives')
-        .doc(router.query.id as string)
-        .collection('messages')
-        .add({
-          text: trimmedMessage,
-          author: currentUser()?.displayName,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        });
+      db.collection('lives').doc(`${router.query.id}`).collection('messages').add({
+        text: trimmedMessage,
+        author: currentUser()?.displayName,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
       setCurrentMessage('');
     }
   };
