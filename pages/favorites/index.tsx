@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { DateTime } from 'luxon';
 import firebase from '@fire-client';
 import NavBar from '../../app/components/navbar';
 import Footer from '../../app/components/footer';
@@ -37,20 +36,21 @@ const Favorites = () => {
       <main className={styles.main}>
         <h2 className={styles.title}>¡Estas en tus partidos favoritos!</h2>
         <section className={styles.cards_container}>
-          {favorites.map((match) => (
-            <MatchCard
-              id={match.id}
-              key={match.id}
-              fullHour={match.hour}
-              hour={DateTime.fromISO(match.hour).toLocaleString(DateTime.TIME_SIMPLE)}
-              competition={match.competition}
-              homeTeamName={match.homeTeamName}
-              homeTeamImageUrl={match.homeTeamImageUrl}
-              awayTeamImageUrl={match.awayTeamImageUrl}
-              awayTeamName={match.awayTeamName}
-              status={match.status === 'IN_PLAY' || match.status === 'FINISHED' ? match.status : 'SCHEDULED'}
-            />
-          ))}
+          {favorites.map((match) => {
+            return (
+              <MatchCard
+                id={match.id}
+                key={match.id}
+                utcDate={match.utcDate}
+                competition={match.competition.name}
+                homeTeamName={match.homeTeam.shortName}
+                homeTeamImageUrl={match.homeTeam.crestUrl}
+                awayTeamImageUrl={match.awayTeam.crestUrl}
+                awayTeamName={match.awayTeam.shortName}
+                status={match.status === 'IN_PLAY' || match.status === 'FINISHED' ? match.status : 'SCHEDULED'}
+              />
+            );
+          })}
         </section>
         <Footer />
       </main>
