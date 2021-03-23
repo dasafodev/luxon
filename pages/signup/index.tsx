@@ -1,5 +1,6 @@
 import LoginLayout from '@components/login_layout';
 import Link from 'next/link';
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import style from './signup.module.css';
 import Button from '@components/button';
@@ -34,6 +35,9 @@ const Signup = () => {
 
   return (
     <LoginLayout>
+      <Head>
+        <title>Luxxon - Registro</title>
+      </Head>
       <h2 className={style.title}>Crea tu cuenta</h2>
       <form className={style.credentials_form}>
         <input

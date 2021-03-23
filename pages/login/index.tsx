@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import style from './login.module.css';
 import Button from '@components/button';
 import Link from 'next/link';
@@ -35,6 +36,9 @@ const Login = () => {
 
   return (
     <LoginLayout>
+      <Head>
+        <title>Luxxon - Inicio de sesión</title>
+      </Head>
       <h2 className={style.title}>Ingresa a Luxxon</h2>
       <form className={style.credentials_form}>
         <input
