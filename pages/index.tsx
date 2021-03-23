@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import Head from 'next/head';
-
 import NavBar from '../app/components/navbar';
 import Footer from '../app/components/footer';
 import '../firebase/client';
@@ -55,8 +54,7 @@ const Home = ({ matches }) => {
             <MatchCard
               key={match.id}
               id={match.id}
-              fullHour={match.utcDate}
-              hour={DateTime.fromISO(match.utcDate).setLocale('en-US').toFormat('t')}
+              utcDate={match.utcDate}
               competition={match.competition.name}
               homeTeamName={match.homeTeam.shortName}
               homeTeamImageUrl={match.homeTeam.crestUrl}
