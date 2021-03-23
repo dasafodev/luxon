@@ -15,6 +15,9 @@ export function useAppActions() {
 
 export function Provider({ children }) {
   const [favorites, setFavorites] = useState([]);
+  const [games, setGames] = useState([]);
+  const [positions, setPositions] = useState([]);
+  const [scorers, setScorers] = useState([]);
 
   const [currentUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
@@ -87,8 +90,23 @@ export function Provider({ children }) {
   }
 
   return (
-    <AppDataContext.Provider value={{ favorites }}>
-      <AppActionsContext.Provider value={{ addMatchToFavorites, deleteMatchToFavorites }}>
+    <AppDataContext.Provider
+      value={{
+        favorites,
+        games,
+        positions,
+        scorers,
+      }}
+    >
+      <AppActionsContext.Provider
+        value={{
+          addMatchToFavorites,
+          deleteMatchToFavorites,
+          setGames,
+          setPositions,
+          setScorers,
+        }}
+      >
         {children}
       </AppActionsContext.Provider>
     </AppDataContext.Provider>
