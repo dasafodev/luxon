@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Navbar from '@components/navbar';
 import Footer from '@components/footer';
 import firebase, { currentUser } from '@fire-client';
@@ -88,6 +89,9 @@ const Live = (): JSX.Element => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Luxxon - Live</title>
+      </Head>
       <Navbar />
       <main className={styles.main}>
         <h2 className={styles.title}>¡Todos unidos por un equipo!</h2>

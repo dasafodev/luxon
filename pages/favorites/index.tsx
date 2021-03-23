@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+import { DateTime } from 'luxon';
 import firebase from '@fire-client';
 import NavBar from '../../app/components/navbar';
 import Footer from '../../app/components/footer';
@@ -32,6 +34,9 @@ const Favorites = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Luxxon - Favoritos</title>
+      </Head>
       <NavBar />
       <main className={styles.main}>
         <h2 className={styles.title}>¡Estas en tus partidos favoritos!</h2>

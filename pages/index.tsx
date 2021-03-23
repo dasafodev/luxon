@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { DateTime } from 'luxon';
+import Head from 'next/head';
 import NavBar from '../app/components/navbar';
 import Footer from '../app/components/footer';
 import '../firebase/client';
@@ -41,6 +43,9 @@ const Home = ({ matches }) => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Luxxon - Inicio</title>
+      </Head>
       <NavBar onChange={onChangeSearcher} />
       <main className={styles.main}>
         <h2 className={styles.title}>¡Partidos de Hoy!</h2>
