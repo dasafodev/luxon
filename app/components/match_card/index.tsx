@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './match_card.module.css';
 import { useAppActions, useAppContext } from 'app/context/state';
 import firebase, { currentUser } from '@fire-client';
+import { DateTime } from 'luxon';
 import 'firebase/firestore';
 import axios from 'axios';
 
@@ -31,8 +32,7 @@ const createEvent = (homeTeamName, awayTeamName, fullHour) => {
 
 const MatchCard = ({
   id,
-  hour,
-  fullHour,
+  utcDate,
   competition,
   homeTeamImageUrl,
   homeTeamName,
@@ -44,6 +44,9 @@ const MatchCard = ({
 
   const { favorites } = useAppContext();
   const { addMatchToFavorites, deleteMatchToFavorites } = useAppActions();
+
+  const fullHour = utcDate;
+  const hour = DateTime.fromISO(utcDate).setLocale('en-US').toFormat('t');
 
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged(
@@ -65,15 +68,14 @@ const MatchCard = ({
             clickInHeart(
               favorites,
               id,
+              fullHour,
               homeTeamName,
               awayTeamName,
-              fullHour,
-              addMatchToFavorites,
-              hour,
               competition,
               homeTeamImageUrl,
               awayTeamImageUrl,
               status,
+              addMatchToFavorites,
               deleteMatchToFavorites,
             );
           }}
@@ -117,15 +119,14 @@ const Team = ({ imageUrl, name }) => {
 async function clickInHeart(
   favorites: any,
   id: any,
+  fullHour: any,
   homeTeamName: any,
   awayTeamName: any,
-  fullHour: any,
-  addMatchToFavorites: any,
-  hour: any,
   competition: any,
   homeTeamImageUrl: any,
   awayTeamImageUrl: any,
   status: any,
+  addMatchToFavorites,
   deleteMatchToFavorites: any,
 ) {
   const user: firebase.User = currentUser();
@@ -138,8 +139,8 @@ async function clickInHeart(
     createEvent(homeTeamName, awayTeamName, fullHour);
     addMatchToFavorites({
       id,
-      hour,
       competition,
+      fullHour,
       homeTeamImageUrl,
       homeTeamName,
       awayTeamImageUrl,

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import NavBar from '@components/navbar';
 import Image from 'next/image';
 import Footer from '@components/footer';
@@ -47,6 +48,9 @@ const Profile = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Luxxon - Perfil</title>
+      </Head>
       <NavBar />
       <div className={styles.container}>
         <div>
