@@ -4,7 +4,12 @@ import Image from 'next/image';
 import { DateTime } from 'luxon';
 
 const MatchDetails = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState({
+    utcDate: '',
+    homeTeam: { crestUrl: '', name: '', squad: [] },
+    competition: { name: '' },
+    awayTeam: { crestUrl: '', name: '', squad: [] },
+  });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -36,7 +41,7 @@ const MatchDetails = () => {
           </button>
           <ul className={styles.containerPlayers}>
             {data?.homeTeam.squad.map((player) => (
-              <li key={player.name}>
+              <li key={player.id}>
                 <p className={styles.playerName}> {player.name}</p>
                 <p className={styles.playerPosition}> {player.position}</p>
               </li>
@@ -64,7 +69,7 @@ const MatchDetails = () => {
           </button>
           <ul className={styles.containerPlayers}>
             {data?.awayTeam.squad.map((player) => (
-              <li key={player.name}>
+              <li key={player.id}>
                 <p className={styles.playerName}> {player.name}</p>
                 <p className={styles.playerPosition}> {player.position}</p>
               </li>
