@@ -54,3 +54,24 @@
 .standings .teamPoints {
   font-weight: bold;
 }
+
+@media (max-width: 375px) {
+  .container {
+    margin-bottom: 40px;
+  }
+  .standings {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .standings td {
+    width: 20px;
+  }
+  .standings .teamName {
+    width: 130px;
+  }
+  .crest {
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+  }
+}
