@@ -27,11 +27,6 @@ const Profile = () => {
     };
   }, [fireUser]);
 
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
-
-  // }, [fireUser]);
-
   const [name, setName] = useState(fireUser ? fireUser.displayName : 'Bienvenido');
 
   const onChangeName = (val: React.ChangeEvent<HTMLInputElement>) => {

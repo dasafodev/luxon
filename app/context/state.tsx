@@ -45,7 +45,7 @@ export function Provider({ children }) {
             if (doc.data().favorites.length > 0) {
               Promise.all(
                 doc.data().favorites.map(async (matchId) => {
-                  const doc = await (await firebase.firestore().collection('matches').doc(`${matchId}`).get()).data();
+                  const doc = (await firebase.firestore().collection('matches').doc(`${matchId}`).get()).data();
                   const awayTeam = (
                     await firebase.firestore().collection('teams').doc(`${doc.awayTeam.id}`).get()
                   ).data();
