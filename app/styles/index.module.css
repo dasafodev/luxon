@@ -8,6 +8,7 @@
   padding-bottom: 3rem;
   background-attachment: fixed;
   overflow: scroll;
+  overflow-x: hidden;
   background: rgb(198, 19, 218);
   background: linear-gradient(0deg, rgba(198, 19, 218, 1) 0%, rgba(103, 22, 143, 1) 15%, rgba(5, 25, 64, 1) 45%);
 }

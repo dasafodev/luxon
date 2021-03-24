@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import NavBar from '@components/navbar';
 import Image from 'next/image';
 import Footer from '@components/footer';
@@ -26,11 +27,6 @@ const Profile = () => {
     };
   }, [fireUser]);
 
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged((user) => setFireUser(user));
-
-  // }, [fireUser]);
-
   const [name, setName] = useState(fireUser ? fireUser.displayName : 'Bienvenido');
 
   const onChangeName = (val: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +43,9 @@ const Profile = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Luxxon - Perfil</title>
+      </Head>
       <NavBar />
       <div className={styles.container}>
         <div>
