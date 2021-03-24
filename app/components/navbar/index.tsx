@@ -29,12 +29,6 @@ const NavBar = ({ onChange = null }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (favorites.length <= 0) {
-      router.push('/');
-    }
-  }, [favorites]);
-
   const LoggedOptions = () => {
     return (
       <ul className={styles.list}>
