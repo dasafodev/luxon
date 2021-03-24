@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DateTime } from 'luxon';
 import Head from 'next/head';
 import NavBar from '../app/components/navbar';
 import Footer from '../app/components/footer';
@@ -7,10 +6,9 @@ import '../firebase/client';
 import styles from '../app/styles/index.module.css';
 import MatchCard from '../app/components/match_card';
 
-export async function getServerSideProps(context) {
-  const protocol = process.env.NODE_ENV ? 'http' : 'https';
-
-  const response = await fetch(`${protocol}://${context.req.headers.host}/api/matches`);
+export async function getStaticProps() {
+  const protocol = process.env.HOST_NAME == 'localhost:3000' ? 'http' : 'https';
+  const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/matches`);
   const data = await response.json();
 
   if (!data) {

@@ -77,8 +77,8 @@ input::placeholder {
   border-radius: 50%;
 }
 
-.hide{
-  display:none;
+.hide {
+  display: none;
 }
 
 @media (max-width: 600px) {
