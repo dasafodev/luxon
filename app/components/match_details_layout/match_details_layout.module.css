@@ -20,10 +20,11 @@
   align-items: center;
 }
 
-.containerLogoTeam {
-  height: 11.67rem;
-  width: 11.67rem;
+.logoTeam {
+  width: 180px;
+  height: 180px;
 }
+
 .figure {
   padding: 0;
   margin: 0;

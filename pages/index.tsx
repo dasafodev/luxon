@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DateTime } from 'luxon';
 import Head from 'next/head';
 import NavBar from '../app/components/navbar';
 import Footer from '../app/components/footer';
@@ -61,6 +60,7 @@ const Home = ({ matches }) => {
               awayTeamImageUrl={match.awayTeam.crestUrl}
               awayTeamName={match.awayTeam.shortName}
               status={match.status === 'IN_PLAY' || match.status === 'FINISHED' ? match.status : 'SCHEDULED'}
+              match={match}
             />
           ))}
         </section>
