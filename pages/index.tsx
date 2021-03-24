@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DateTime } from 'luxon';
 import Head from 'next/head';
 import NavBar from '../app/components/navbar';
 import Footer from '../app/components/footer';

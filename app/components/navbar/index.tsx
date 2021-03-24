@@ -9,21 +9,31 @@ import firebase from '@fire-client';
 import SearchBar from '@components/search_bar';
 
 import useDimensions from '../../hooks/useDimensions';
+import { useAppContext } from '../../context/state';
 
 const NavBar = ({ onChange = null }) => {
   const { width } = useDimensions();
   const router = useRouter();
   const [fireUser, setFireUser] = useState<firebase.User>();
 
+  const { favorites } = useAppContext();
+
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged(
       (user) => setFireUser(user),
       (err) => console.warn(err),
     );
+
     return () => {
       unlisten();
     };
   }, []);
+
+  useEffect(() => {
+    if (favorites.length <= 0) {
+      router.push('/');
+    }
+  }, [favorites]);
 
   const LoggedOptions = () => {
     return (
@@ -31,9 +41,11 @@ const NavBar = ({ onChange = null }) => {
         <Button onClick={() => router.push('/competition')} secondary={true}>
           Competiciones
         </Button>
-        <Button onClick={() => router.push('/favorites')} secondary={true}>
-          Favoritos
-        </Button>
+        {favorites.length > 0 && (
+          <Button onClick={() => router.push('/favorites')} secondary={true}>
+            Favoritos
+          </Button>
+        )}
         <Button onClick={() => router.push('/profile')}>Perfil</Button>
       </ul>
     );
