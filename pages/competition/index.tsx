@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import firebase from '@fire-client';
+import '../../firebase/client';
 import { useAppContext } from 'app/context/state';
 import NavBar from '@components/navbar';
 import styles from '../../app/styles/index.module.css';
@@ -9,7 +12,23 @@ import ScrollSlider from '@components/scroll_slider';
 
 const Competition = () => {
   const { games, positions } = useAppContext();
+  const router = useRouter();
+  const [, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
   const cardMatch = [];
+
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setFireUser(user);
+      } else {
+        router.replace('/login');
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, []);
 
   return (
     <React.Fragment>
