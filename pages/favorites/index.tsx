@@ -31,6 +31,12 @@ const Favorites = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (favorites.length <= 0) {
+      router.push('/');
+    }
+  }, [favorites]);
+
   return (
     <React.Fragment>
       <Head>
