@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { DateTime } from 'luxon';
+import { firestore } from 'firebase-admin';
 
 import db from '../../utils/database';
-import sameDate from '../../utils/sameDate';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -10,39 +11,42 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const matchesRef = db.collection('matches');
         const teamsRef = db.collection('teams');
 
-        const snapshot = await matchesRef.get();
-
         const tempMatches = [];
         const matches = [];
 
-        if (snapshot.docs.length > 0) {
-          snapshot.forEach((doc) => {
-            const documentDate = new Date(doc.data().utcDate);
-            const currentDate = new Date();
-            if (sameDate(currentDate, documentDate)) {
-              tempMatches.push(doc.data());
-            }
-          });
+        const date = DateTime.now().c;
 
-          // Once all matches are fetched it's time to resolve home and away teams data per match.
-          await Promise.all(
-            tempMatches.map(async (match) => {
-              const homeTeamDoc = await teamsRef.doc(`${match.homeTeam.id}`).get();
-              const homeTeamData = homeTeamDoc.data();
-              const awayTeamDoc = await teamsRef.doc(`${match.awayTeam.id}`).get();
-              const awayTeamData = awayTeamDoc.data();
-              matches.push({
-                ...match,
-                homeTeam: homeTeamData,
-                awayTeam: awayTeamData,
-              });
-            }),
-          );
-        }
+        const dateFrom = firestore.Timestamp.fromDate(
+          new Date(
+            `${date.year}-${date.month < 9 ? `0${date.month}` : date.month}-${
+              date.day < 9 ? `0${date.day}` : date.day
+            }`,
+          ),
+        );
+
+        const snapshot = await matchesRef.where('timestamp', '>=', dateFrom).limit(20).get();
+
+        snapshot.forEach((doc) => {
+          tempMatches.push(doc.data());
+        });
+
+        await Promise.all(
+          tempMatches.map(async (match) => {
+            const homeTeamDoc = await teamsRef.doc(`${match.homeTeam.id}`).get();
+            const homeTeamData = homeTeamDoc.data();
+            const awayTeamDoc = await teamsRef.doc(`${match.awayTeam.id}`).get();
+            const awayTeamData = awayTeamDoc.data();
+            matches.push({
+              ...match,
+              homeTeam: homeTeamData,
+              awayTeam: awayTeamData,
+            });
+          }),
+        );
 
         return res.status(200).json({
           statusCode: 200,
-          total: tempMatches.length,
+          total: matches.length,
           matches: matches,
         });
       } catch (e) {
@@ -55,19 +59,34 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         // List matches across (a set of) competitions.
         // Oficial information: www.football-data.org/documentation/api#match
-        const response = await fetch('http://api.football-data.org/v2/matches', {
-          headers: {
-            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY,
+        const dateFrom = DateTime.now().c;
+        const dateTo = DateTime.now().plus({ day: 10 }).c;
+
+        const response = await fetch(
+          `http://api.football-data.org/v2/matches?dateFrom=${dateFrom.year}-${
+            dateFrom.month < 9 ? `0${dateFrom.month}` : dateFrom.month
+          }-${dateFrom.day < 9 ? `0${dateFrom.day}` : dateFrom.day}&dateTo=${dateTo.year}-${
+            dateTo.month < 9 ? `0${dateTo.month}` : dateTo.month
+          }-${dateTo.day < 9 ? `0${dateTo.day}` : dateTo.day}`,
+          {
+            headers: {
+              'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY,
+            },
           },
-        });
+        );
 
         const data = await response.json();
 
         data.matches.forEach(async (match) => {
-          // Once it is confirmed that the document is not in the collection it will be added.
-          if (!(await (await db.collection('matches').doc(`${match.id}`).get()).exists)) {
-            await db.collection('matches').doc(`${match.id}`).set(match);
-          }
+          const date = new Date(match.utcDate);
+          await db
+            .collection('matches')
+            .doc(`${match.id}`)
+            .update({
+              ...match,
+              utcDate: match.utcDate,
+              timestamp: firestore.Timestamp.fromDate(date),
+            });
         });
 
         return res.status(201).json({
