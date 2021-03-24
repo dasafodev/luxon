@@ -77,6 +77,10 @@ input::placeholder {
   border-radius: 50%;
 }
 
+.hide{
+  display:none;
+}
+
 @media (max-width: 600px) {
   html {
     font-size: 10px;
