@@ -36,12 +36,14 @@
   margin: 1rem;
 }
 
-.buttonVideoCall {
-  border: 1px solid var(--fucsia);
+.aVideoCall {
   width: 9.42rem;
   height: 5.67rem;
   background-color: #051940;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .time {
