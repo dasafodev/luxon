@@ -58,6 +58,7 @@ const Favorites = () => {
                 awayTeamImageUrl={match.awayTeam.crestUrl}
                 awayTeamName={match.awayTeam.shortName}
                 status={match.status === 'IN_PLAY' || match.status === 'FINISHED' ? match.status : 'SCHEDULED'}
+                match={match}
               />
             );
           })}
