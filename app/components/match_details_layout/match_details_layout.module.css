@@ -90,3 +90,6 @@
   flex-shrink: 0;
   color: #949494;
 }
+
+@media (max-width: 750px) {
+}
