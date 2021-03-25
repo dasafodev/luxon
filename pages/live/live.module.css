@@ -77,7 +77,7 @@
   background-color: #3092cd;
   color: #ffffff;
 }
-.chat_box textarea::placeholder{
+.chat_box textarea::placeholder {
   color: white;
 }
 
