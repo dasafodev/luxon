@@ -27,7 +27,6 @@
   }
   .footer {
     margin-top: 3rem;
-    position: relative;
   }
 }
 
@@ -38,9 +37,10 @@
     padding: 0;
   }
   .footer {
-    justify-content: center;
+    display: none;
+    /* justify-content: center;
     margin-top: 10rem;
     position: relative;
-    bottom: 72px;
+    bottom: 72px; */
   }
 }
