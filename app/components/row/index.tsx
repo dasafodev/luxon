@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../../../pages/competition/standings/standings.module.css';
+import styles from '@components/standings/standings.module.css';
+// import styles from '@cp/standings/standings.module.css';
 
 const Row = ({
   position,

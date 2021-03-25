@@ -46,7 +46,7 @@ const Home = ({ matches }) => {
       </Head>
       <NavBar onChange={onChangeSearcher} />
       <main className={styles.main}>
-        <h2 className={styles.title}>¡Partidos de Hoy!</h2>
+        <h2 className={styles.title}>Calendario de partidos</h2>
         <section className={styles.cards_container}>
           {matchess?.map((match) => (
             <MatchCard
