@@ -161,11 +161,7 @@ const NavBar = ({ onChange = null }) => {
             <Image src='/images/logo.png' alt='Logo' width={50} height={50} />
           </a>
         </Link>
-        {width >= 768 ? (
-          router.pathname != '/login' && router.pathname != '/signup' ? (
-            <SearchBar onChange={onChange} />
-          ) : null
-        ) : null}
+        {width >= 768 ? router.pathname === '/' ? <SearchBar onChange={onChange} /> : null : null}
         {width >= 768 ? (
           router.pathname != '/login' && router.pathname != '/signup' && !fireUser ? (
             <ul className={styles.list}>
