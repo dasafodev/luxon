@@ -47,17 +47,17 @@ const Profile = () => {
         <title>Luxxon - Perfil</title>
       </Head>
       <NavBar />
-      <div className={styles.container}>
+      <section className={styles.container}>
         <div>
           <h2 className='title text-center'>¡Estás en tu perfil!</h2>
           <Image
-            height='300px'
-            width='300px'
+            height='250px'
+            width='250px'
             alt='profile pic'
             src='/images/logo.png'
             className='rounded'
             layout='responsive'
-          ></Image>
+          />
           <input type='edit' className={styles.input} value={name} onChange={(val) => onChangeName(val)} />
           <p className={styles.info}>
             <strong className={styles.info_highlight}>Email: </strong> {fireUser ? fireUser.email : ''}
@@ -66,8 +66,8 @@ const Profile = () => {
             Cerrar sesión
           </Button>
         </div>
-      </div>
-      <Footer />
+        <Footer />
+      </section>
     </React.Fragment>
   );
 };

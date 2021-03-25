@@ -16,6 +16,7 @@ export default function MyApp({ Component, pageProps }) {
     const handleStart = (url) => {
       if (!noLoad.includes(url)) setLoading(true);
     };
+
     const handleComplete = (url) => {
       if (url == '/') {
         setTimeout(function () {
