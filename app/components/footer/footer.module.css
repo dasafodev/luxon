@@ -20,6 +20,10 @@
 }
 
 @media (max-width: 950px) {
+  .footer {
+    display: none;
+  }
+
   .a,
   .p {
     font-size: 1rem;
@@ -32,6 +36,10 @@
 }
 
 @media (max-width: 760px) {
+  .footer {
+    display: none;
+  }
+
   .a,
   .p {
     font-size: 0.7rem;
