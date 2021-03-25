@@ -7,9 +7,9 @@ import { DateTime } from 'luxon';
 const MatchDetails = () => {
   const [data, setData] = useState({
     utcDate: '',
-    homeTeam: { crestUrl: '', name: '', role: '', squad: [] },
+    homeTeam: { crestUrl: '', name: '', role: '', id: '', squad: [] },
     competition: { name: '' },
-    awayTeam: { crestUrl: '', name: '', role: '', squad: [] },
+    awayTeam: { crestUrl: '', name: '', role: '', id: '', squad: [] },
     id: '',
   });
 
@@ -31,7 +31,7 @@ const MatchDetails = () => {
             <img className={styles.logoTeam} src={data.homeTeam.crestUrl} alt='Home team`s logo' />
           </figure>
           <h2 className={styles.nameTeam}>{data.homeTeam.name}</h2>
-          <Link href={`/live/${data.homeTeam.name}-${data.id}`}>
+          <Link href={`/live/${data.homeTeam.id}-${data.id}`}>
             <a className={styles.aVideoCall}>
               <Image
                 src='/images/icons/videoConference.png'
@@ -63,7 +63,7 @@ const MatchDetails = () => {
             <img className={styles.logoTeam} src={data.awayTeam.crestUrl} alt='Away team`s logo' />
           </figure>
           <h2 className={styles.nameTeam}>{data.awayTeam.name}</h2>
-          <Link href={`/live/${data.awayTeam.name}-${data.id}`}>
+          <Link href={`/live/${data.awayTeam.id}-${data.id}`}>
             <a className={styles.aVideoCall}>
               <Image
                 src='/images/icons/videoConference.png'
