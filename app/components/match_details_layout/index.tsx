@@ -42,7 +42,7 @@ const MatchDetails = () => {
             </a>
           </Link>
           <ul className={styles.containerPlayers}>
-            {data.awayTeam.squad.map((player) => {
+            {data.homeTeam.squad.map((player) => {
               if (player.role === 'PLAYER') {
                 return (
                   <li key={player.id}>
