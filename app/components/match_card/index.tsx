@@ -6,6 +6,7 @@ import firebase, { currentUser } from '@fire-client';
 import { DateTime } from 'luxon';
 import 'firebase/firestore';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 // const dislikeIcon = '/images/icons/dislike.png';
 // const likeIcon = '/images/icons/like.png';
@@ -39,6 +40,7 @@ const MatchCard = ({
   awayTeamImageUrl,
   awayTeamName,
   status,
+  match,
 }) => {
   const [fireUser, setFireUser] = useState<firebase.User>(firebase.auth().currentUser);
 
@@ -47,6 +49,8 @@ const MatchCard = ({
 
   const fullHour = utcDate;
   const hour = DateTime.fromISO(utcDate).setLocale('en-US').toFormat('t');
+
+  const router = useRouter();
 
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged(
@@ -58,32 +62,37 @@ const MatchCard = ({
     };
   }, []);
 
+  const handleClick = (e) => {
+    if (e.target.id === 'book') {
+      clickInHeart(
+        favorites,
+        id,
+        fullHour,
+        homeTeamName,
+        awayTeamName,
+        competition,
+        homeTeamImageUrl,
+        awayTeamImageUrl,
+        status,
+        addMatchToFavorites,
+        deleteMatchToFavorites,
+      );
+    } else {
+      localStorage.setItem('detail', JSON.stringify(match));
+      router.push('/details');
+    }
+    console.warn(e.target.id);
+  };
+
   return (
     // <Link href="/details">
-    <div onClick={() => console.warn('pussh')} className={styles.card}>
+    <div onClick={handleClick} className={styles.card}>
       {fireUser && (
-        <button
-          className={styles.like_icon}
-          onClick={() => {
-            clickInHeart(
-              favorites,
-              id,
-              fullHour,
-              homeTeamName,
-              awayTeamName,
-              competition,
-              homeTeamImageUrl,
-              awayTeamImageUrl,
-              status,
-              addMatchToFavorites,
-              deleteMatchToFavorites,
-            );
-          }}
-        >
+        <button className={styles.like_icon}>
           {favorites.some((match) => match.id == id) ? (
-            <Image width='28' height='28' src='/images/icons/event.png' alt='Filled heart' />
+            <Image id='book' width='28' height='28' src='/images/icons/event.png' alt='Filled heart' />
           ) : (
-            <Image width='28' height='28' src='/images/icons/add-event.png' alt='Unfilled heart' />
+            <Image id='book' width='28' height='28' src='/images/icons/add-event.png' alt='Unfilled heart' />
           )}
         </button>
       )}

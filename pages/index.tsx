@@ -6,10 +6,9 @@ import '../firebase/client';
 import styles from '../app/styles/index.module.css';
 import MatchCard from '../app/components/match_card';
 
-export async function getServerSideProps(context) {
-  const protocol = process.env.NODE_ENV ? 'http' : 'https';
-
-  const response = await fetch(`${protocol}://${context.req.headers.host}/api/matches`);
+export async function getStaticProps() {
+  const protocol = process.env.HOST_NAME == 'localhost:3000' ? 'http' : 'https';
+  const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/matches`);
   const data = await response.json();
 
   if (!data) {
@@ -60,6 +59,7 @@ const Home = ({ matches }) => {
               awayTeamImageUrl={match.awayTeam.crestUrl}
               awayTeamName={match.awayTeam.shortName}
               status={match.status === 'IN_PLAY' || match.status === 'FINISHED' ? match.status : 'SCHEDULED'}
+              match={match}
             />
           ))}
         </section>
