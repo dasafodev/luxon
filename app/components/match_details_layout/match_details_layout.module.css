@@ -6,6 +6,7 @@
 }
 
 .container {
+  padding-top: 70px;
   height: calc(98vh - 11.67rem);
   width: 100%;
   display: flex;
