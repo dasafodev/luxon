@@ -10,6 +10,7 @@ const MatchDetails = () => {
     homeTeam: { crestUrl: '', name: '', role: '', squad: [] },
     competition: { name: '' },
     awayTeam: { crestUrl: '', name: '', role: '', squad: [] },
+    id: '',
   });
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const MatchDetails = () => {
     }
   }, []);
 
-  const hour = DateTime.fromISO(data?.utcDate).setLocale('en-US').toFormat('t');
+  const hour = DateTime.fromISO(data.utcDate).setLocale('en-US').toFormat('t');
 
   return (
     <div>
@@ -27,10 +28,10 @@ const MatchDetails = () => {
       <div className={styles.container}>
         <div className={styles.containerTeam}>
           <figure className={styles.containerLogoTeam}>
-            <img className={styles.logoTeam} src={data?.homeTeam.crestUrl} alt='Home team`s logo' />
+            <img className={styles.logoTeam} src={data.homeTeam.crestUrl} alt='Home team`s logo' />
           </figure>
-          <h2 className={styles.nameTeam}>{data?.homeTeam.name}</h2>
-          <Link href='/pages/live/[id].tsx'>
+          <h2 className={styles.nameTeam}>{data.homeTeam.name}</h2>
+          <Link href={`/live/${data.homeTeam.name}-${data.id}`}>
             <a className={styles.aVideoCall}>
               <Image
                 src='/images/icons/videoConference.png'
@@ -41,7 +42,7 @@ const MatchDetails = () => {
             </a>
           </Link>
           <ul className={styles.containerPlayers}>
-            {data?.awayTeam.squad.map((player) => {
+            {data.awayTeam.squad.map((player) => {
               if (player.role === 'PLAYER') {
                 return (
                   <li key={player.id}>
@@ -55,14 +56,14 @@ const MatchDetails = () => {
         </div>
         <div className={styles.time}>
           <p className={styles.timeHour}>{hour}</p>
-          <p className={styles.competition}>{data?.competition.name}</p>
+          <p className={styles.competition}>{data.competition.name}</p>
         </div>
         <div className={styles.containerTeam}>
           <figure className={styles.containerLogoTeam}>
-            <img className={styles.logoTeam} src={data?.awayTeam.crestUrl} alt='Away team`s logo' />
+            <img className={styles.logoTeam} src={data.awayTeam.crestUrl} alt='Away team`s logo' />
           </figure>
-          <h2 className={styles.nameTeam}>{data?.awayTeam.name}</h2>
-          <Link href='/pages/live/[id].tsx'>
+          <h2 className={styles.nameTeam}>{data.awayTeam.name}</h2>
+          <Link href={`/live/${data.awayTeam.name}-${data.id}`}>
             <a className={styles.aVideoCall}>
               <Image
                 src='/images/icons/videoConference.png'
@@ -73,7 +74,7 @@ const MatchDetails = () => {
             </a>
           </Link>
           <ul className={styles.containerPlayers}>
-            {data?.awayTeam.squad.map((player) => {
+            {data.awayTeam.squad.map((player) => {
               if (player.role === 'PLAYER') {
                 return (
                   <li key={player.id}>
