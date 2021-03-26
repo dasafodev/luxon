@@ -1,8 +1,3 @@
-// const Competition = () => {
-//   return <h1>Hola</h1>;
-// };
-// export default Competition;
-
 import React, { useState, useEffect } from 'react';
 // import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,6 +5,7 @@ import firebase from '@fire-client';
 import '../../firebase/client';
 // import { useAppContext } from 'app/context/state';
 import NavBar from '@components/navbar';
+import Footer from '@components/footer';
 import styles from '../../app/styles/index.module.css';
 import stylesCompetition from './competition.module.css';
 import GameCard from '@components/game_card';
@@ -151,6 +147,7 @@ const Competition = ({ data }) => {
         {categorySelected == 'classification' && <Standings positions={dataSelected.positions} />}
         {categorySelected == 'scorers' && <Scorers positions={dataSelected.positions} scorers={dataSelected.scorers} />}
       </section>
+      <Footer />
     </React.Fragment>
   );
 };

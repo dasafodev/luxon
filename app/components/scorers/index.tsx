@@ -1,6 +1,7 @@
 import React from 'react';
-import stylesTable from '../standings/standings.module.css';
+//import stylesTable from '../standings/standings.module.css';
 import TableBody from '@components/table_body';
+import stylesScorers from './scorers.module.css';
 import Row from '@components/row';
 
 const Scorers = ({ scorers, positions }) => {
@@ -12,7 +13,7 @@ const Scorers = ({ scorers, positions }) => {
     <React.Fragment>
       {/* <NavBar /> */}
       {/* <section className={styles.main}> */}
-      <div className={stylesTable.container}>
+      <div className={stylesScorers.container}>
         {scorers.map((item) => {
           const emblem = positions.filter((position) => position.team.id === item.team.id);
           rows.push(
@@ -34,7 +35,9 @@ const Scorers = ({ scorers, positions }) => {
           );
         })}
       </div>
-      <TableBody goalsTable>{rows}</TableBody>
+      <div className={stylesScorers.container}>
+        <TableBody goalsTable>{rows}</TableBody>
+      </div>
       {/* </section> */}
     </React.Fragment>
   );

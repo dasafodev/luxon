@@ -17,6 +17,7 @@
   height: 300px;
   overflow: scroll;
   overflow-y: auto;
+  padding-left: 280px;
 }
 .scroll::-webkit-scrollbar {
   height: 8px;

@@ -20,6 +20,10 @@
 }
 
 @media (max-width: 950px) {
+  .footer {
+    display: none;
+  }
+
   .a,
   .p {
     font-size: 1rem;
@@ -27,20 +31,24 @@
   }
   .footer {
     margin-top: 3rem;
-    position: relative;
   }
 }
 
 @media (max-width: 760px) {
+  .footer {
+    display: none;
+  }
+
   .a,
   .p {
     font-size: 0.7rem;
     padding: 0;
   }
   .footer {
-    justify-content: center;
+    display: none;
+    /* justify-content: center;
     margin-top: 10rem;
     position: relative;
-    bottom: 72px;
+    bottom: 72px; */
   }
 }
