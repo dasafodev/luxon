@@ -24,6 +24,10 @@
   color: white;
 }
 
+.label_searcher {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .search_bar {
     width: 322px;

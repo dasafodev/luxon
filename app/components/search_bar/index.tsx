@@ -9,7 +9,15 @@ export default function SearchBar({ onChange = null }) {
           fill='white'
         />
       </svg>
-      <input className={styles.search_bar} type='search' onChange={onChange} />
+      <input
+        id='seacher'
+        className={styles.search_bar}
+        type='search'
+        // aria-label='Search'
+        // aria-labelledby='Search'
+        aria-hidden='true'
+        onChange={onChange}
+      />
     </div>
   );
 }
