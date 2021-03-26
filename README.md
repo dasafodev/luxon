@@ -24,6 +24,7 @@ Luxxon es una aplicación web donde puedes agendar los partidos de tus equipos f
 ## Tecnologías de desarrollor
 
 - CSS Modules
+- JavaScript & TypeScript
 - React.js + Next.js
 - Firebase (Servicio de Backend & Bases de datos)
 - Luxon (Manejo de las horas)
