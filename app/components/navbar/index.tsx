@@ -164,12 +164,12 @@ const NavBar = ({ onChange = null }) => {
         {width >= 768 ? router.pathname === '/' ? <SearchBar onChange={onChange} /> : null : null}
         {width >= 768 ? (
           router.pathname != '/login' && router.pathname != '/signup' && !fireUser ? (
-            <ul className={styles.list}>
+            <div className={styles.list}>
               <Button onClick={() => router.push('/login')} secondary={true}>
                 Login
               </Button>
               <Button onClick={() => router.push('/signup')}>SignUp</Button>
-            </ul>
+            </div>
           ) : fireUser != undefined ? (
             LoggedOptions()
           ) : null
