@@ -124,7 +124,7 @@ const Live = (): JSX.Element => {
               <form onSubmit={handleOnSubmit}>
                 <textarea placeholder='Escribe tu mensaje...' value={currentMessage} onChange={handleChange} />
                 <button type='submit' className={styles.chat_button}>
-                  Send
+                  Enviar
                 </button>
               </form>
             </div>
