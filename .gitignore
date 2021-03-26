@@ -1,6 +1,10 @@
 node_modules
 .next
-.env
+.env.local
+.vscode
+.package-lock.json
 
 ## Firebase 
 utils/database/serviceAccountKey.json
+# Local Netlify folder
+.netlify

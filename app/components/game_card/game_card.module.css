@@ -1,0 +1,111 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: space-around;
+  width: 240px;
+  height: 190px;
+  padding: 20px;
+  background-color: #072155;
+  border-radius: 20px;
+  border: 1px solid white;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.2);
+}
+.info_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_container {
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 0.4fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0rem 1rem;
+  height: 50%;
+  width: 100%;
+}
+.one,
+.two,
+.three,
+.four,
+.five,
+.six {
+  align-items: center;
+}
+.one,
+.four {
+  height: 40px;
+  width: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.one {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.two {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.three {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.four {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  margin-top: 1rem;
+}
+.five {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.six {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+.teams_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 70%;
+}
+
+.teamShield_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.score_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 30%;
+}
+
+.team_name {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-left: 0.7rem;
+}
+
+.team_score {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.status {
+  font-size: 1rem;
+  color: #949494;
+}

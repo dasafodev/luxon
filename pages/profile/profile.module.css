@@ -4,10 +4,24 @@
   flex-direction: column;
   height: calc(100vh - 70px);
   width: 100vw;
-  background-image: var(--gradient);
+  background: var(--gradient);
   background-attachment: fixed;
   overflow: scroll;
-  padding-bottom: 3rem;
+  overflow-x: hidden;
+  padding-top: 70px;
+}
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+.container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+.container::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 .info {
@@ -31,4 +45,10 @@
   /* font-size: 1rem !important; */
   border: 0 !important;
   border-bottom: 1px solid var(--fucsia) !important;
+}
+
+.logout_button {
+  width: 100%;
+  margin: 0;
+  margin-top: 1rem;
 }
