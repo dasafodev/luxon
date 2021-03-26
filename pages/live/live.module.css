@@ -23,7 +23,6 @@
 }
 
 .stream {
-  margin-left: 10px;
   border: 1px solid #3092cd;
   position: relative;
   width: 100%;
@@ -44,6 +43,7 @@
   border: 1px solid #3092cd;
   display: grid;
   grid-template-rows: 1fr 90px;
+  width: 100%;
 }
 
 .chat_conversation {
@@ -101,8 +101,8 @@
 
   .stream,
   .chat {
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
   }
 }
 

@@ -16,6 +16,24 @@
 .list {
   display: flex;
   align-items: center;
+  list-style-type: none;
+  padding-right: 32px;
+}
+
+.list_item {
+  height: 32px;
+}
+
+.list_item a {
+  color: white;
+}
+
+.list_item:first-of-type {
+  height: 22px;
+}
+
+.list_item:not(:last-of-type) {
+  margin-right: 32px;
 }
 
 .name {
@@ -36,7 +54,10 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+}
+
+.bottom_navbar_no_favorites {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .bottom_navbar_icons {
