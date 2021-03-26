@@ -92,9 +92,6 @@ const Live = (): JSX.Element => {
         <section className={styles.content}>
           {width >= 768 ? (
             <div className={styles.stream}>
-              {console.warn('room', room)}
-              {console.warn('name', currentUser())}
-              {console.warn('pass', password)}
               {currentUser() != undefined && showMeet ? (
                 <Jutsu
                   containerStyles={{ width: '100%', height: '70vh' }}

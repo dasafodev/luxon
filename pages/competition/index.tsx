@@ -19,7 +19,6 @@ export const getStaticProps = async () => {
   const data = [];
   for (let index = 0; index < Shields.length; index++) {
     const idCode = Shields[index].code;
-    console.warn('idCode', idCode);
     const tempData = {};
     const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/competitions/${idCode}/matches`);
     const dataResp = await response.json();
@@ -68,18 +67,8 @@ const Competition = ({ data }) => {
   }, []);
 
   const handleClick = async (newIdCode) => {
-    console.warn(
-      'find',
-      data.find((elem) => {
-        console.warn('elem.id', elem.id);
-        console.warn('newIdCode', newIdCode);
-        return elem.id == newIdCode;
-      }),
-    );
     const temp = data.find((elem) => elem.id == newIdCode);
-    console.warn(temp);
     setDataSelected(temp);
-    console.warn(newIdCode);
     // setIdCode(newIdCode);
     // await fetchData(newIdCode);
   };

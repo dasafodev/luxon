@@ -16,7 +16,6 @@ const MatchDetails = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setData(JSON.parse(window.localStorage.getItem('detail')));
-      console.warn(data);
     }
   }, []);
 
