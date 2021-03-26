@@ -12,6 +12,7 @@
   grid-template-columns: repeat(auto-fit, 290px);
   width: 100%;
   margin-top: 1.6rem;
+  padding-bottom: 10rem;
 }
 
 .navCompetition {

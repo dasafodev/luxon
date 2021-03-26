@@ -8,6 +8,7 @@
   background-attachment: fixed;
   overflow: scroll;
   overflow-x: hidden;
+  padding-top: 70px;
 }
 .container::-webkit-scrollbar {
   width: 8px;

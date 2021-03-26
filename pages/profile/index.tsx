@@ -16,7 +16,7 @@ const Profile = () => {
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged(
       (user) => setFireUser(user),
-      (err) => console.warn(err),
+      (err) => console.error(err),
     );
     if (!fireUser) {
       router.replace('/login');

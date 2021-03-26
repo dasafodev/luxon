@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../pages/competition/standings/standings.module.css';
+import styles from '@components/standings/standings.module.css';
 
 const TableBody = (props) => {
   return (

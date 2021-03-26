@@ -26,24 +26,6 @@ const Live = (): JSX.Element => {
 
   const { width } = useDimensions();
 
-  // useEffect(() => {
-  //   // setName(currentUser()?.displayName);
-  //   // setRoom(router.query.id as string);
-  //   // setPassword(router.query.id as string);
-  // }, []);
-
-  // useEffect(() => {
-  //   const unlisten = firebase.auth().onAuthStateChanged((user) => {
-  //     if (!user) {
-  //       router.replace('/login');
-  //     }
-  //   });
-
-  //   return () => {
-  //     unlisten();
-  //   };
-  // }, []);
-
   useEffect(() => {
     setTimeout(() => setShowMeet(true), 1000);
 
@@ -110,12 +92,9 @@ const Live = (): JSX.Element => {
         <section className={styles.content}>
           {width >= 768 ? (
             <div className={styles.stream}>
-              {console.warn('room', room)}
-              {console.warn('name', currentUser())}
-              {console.warn('pass', password)}
               {currentUser() != undefined && showMeet ? (
                 <Jutsu
-                  containerStyles={{ width: '100%', height: '80vh' }}
+                  containerStyles={{ width: '100%', height: '70vh' }}
                   roomName={room}
                   displayName={currentUser().displayName}
                   password={password}

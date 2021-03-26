@@ -5,7 +5,7 @@ export default async function handler(req, res) {
       try {
         const response = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/matches/`, {
           headers: {
-            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY,
+            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEYB,
           },
         });
         const data = await response.json();
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       try {
         const response = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/standings/`, {
           headers: {
-            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY,
+            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEYC,
           },
         });
         const data = await response.json();
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       try {
         const response = await fetch(`https://api.football-data.org/v2/competitions/${idCode}/scorers/`, {
           headers: {
-            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEY,
+            'X-Auth-Token': process.env.FOOTBALL_DATA_API_KEYD,
           },
         });
         const data = await response.json();
