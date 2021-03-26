@@ -13,8 +13,9 @@ export default function SearchBar({ onChange = null }) {
         id='seacher'
         className={styles.search_bar}
         type='search'
-        aria-label='Search'
-        aria-labelledby='Search'
+        // aria-label='Search'
+        // aria-labelledby='Search'
+        aria-hidden='true'
         onChange={onChange}
       />
     </div>
