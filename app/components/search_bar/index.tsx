@@ -9,7 +9,10 @@ export default function SearchBar({ onChange = null }) {
           fill='white'
         />
       </svg>
-      <input className={styles.search_bar} type='search' onChange={onChange} />
+      <input id='seacher' className={styles.search_bar} type='search' onChange={onChange} />
+      <label className={styles.label_searcher} htmlFor='seacher'>
+        Buscador
+      </label>
     </div>
   );
 }

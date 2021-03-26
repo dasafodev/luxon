@@ -31,7 +31,7 @@ const NavBar = ({ onChange = null }) => {
 
   const LoggedOptions = () => {
     return (
-      <ul className={styles.list}>
+      <div className={styles.list}>
         <Button onClick={() => router.push('/competition')} secondary={true}>
           Competiciones
         </Button>
@@ -41,7 +41,7 @@ const NavBar = ({ onChange = null }) => {
           </Button>
         )}
         <Button onClick={() => router.push('/profile')}>Perfil</Button>
-      </ul>
+      </div>
     );
   };
 
