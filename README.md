@@ -11,10 +11,10 @@ Luxxon es una aplicación web donde puedes agendar los partidos de tus equipos f
 
 ## Tecnologias de administración de proyectos
 
+- SCRUM
 - Discord
 - Notion
-- Github
-- SCRUM
+- Git & Github
 
 ## Tecnologias de diseño
 
