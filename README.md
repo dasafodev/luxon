@@ -1,8 +1,8 @@
 ## Equipo de diseño & desarrollo
 
 - [Pablo Verduzco](https://www.linkedin.com/in/pabloverduzco/)
-- [Mauricio Rodriguez](https://www.linkedin.com/in/mauricio-rodriguez-avila/)
-- [Santiago forero](https://www.linkedin.com/in/dasafodev/)
+- [Mauricio Rodríguez](https://www.linkedin.com/in/mauricio-rodriguez-avila/)
+- [Santiago Forero](https://www.linkedin.com/in/dasafodev/)
 - [Jorge Arias Argüelles](https://www.linkedin.com/in/jorgeariasarguelles/)
 
 ## Descripción
