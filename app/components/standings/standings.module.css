@@ -1,9 +1,10 @@
 .container {
   display: flex;
+  margin-top: -10rem;
+  padding-bottom: 10rem;
 }
 
 .standings {
-  margin: 0 auto;
   border-collapse: collapse;
   font-size: 1.3rem;
 }

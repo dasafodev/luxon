@@ -1,8 +1,3 @@
-// const Competition = () => {
-//   return <h1>Hola</h1>;
-// };
-// export default Competition;
-
 import React, { useState, useEffect } from 'react';
 // import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,6 +5,7 @@ import firebase from '@fire-client';
 import '../../firebase/client';
 // import { useAppContext } from 'app/context/state';
 import NavBar from '@components/navbar';
+import Footer from '@components/footer';
 import styles from '../../app/styles/index.module.css';
 import stylesCompetition from './competition.module.css';
 import GameCard from '@components/game_card';
@@ -23,7 +19,6 @@ export const getStaticProps = async () => {
   const data = [];
   for (let index = 0; index < Shields.length; index++) {
     const idCode = Shields[index].code;
-    console.warn('idCode', idCode);
     const tempData = {};
     const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/competitions/${idCode}/matches`);
     const dataResp = await response.json();
@@ -72,18 +67,8 @@ const Competition = ({ data }) => {
   }, []);
 
   const handleClick = async (newIdCode) => {
-    console.warn(
-      'find',
-      data.find((elem) => {
-        console.warn('elem.id', elem.id);
-        console.warn('newIdCode', newIdCode);
-        return elem.id == newIdCode;
-      }),
-    );
     const temp = data.find((elem) => elem.id == newIdCode);
-    console.warn(temp);
     setDataSelected(temp);
-    console.warn(newIdCode);
     // setIdCode(newIdCode);
     // await fetchData(newIdCode);
   };
@@ -151,6 +136,7 @@ const Competition = ({ data }) => {
         {categorySelected == 'classification' && <Standings positions={dataSelected.positions} />}
         {categorySelected == 'scorers' && <Scorers positions={dataSelected.positions} scorers={dataSelected.scorers} />}
       </section>
+      <Footer />
     </React.Fragment>
   );
 };

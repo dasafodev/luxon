@@ -21,6 +21,24 @@ body {
   margin: 0;
   font-size: 1rem;
   font-family: 'Lato', sans-serif;
+  overflow: scroll;
+  overflow-x: hidden;
+  background: var(--gradient);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 h2 {

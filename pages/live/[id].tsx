@@ -92,9 +92,6 @@ const Live = (): JSX.Element => {
         <section className={styles.content}>
           {width >= 768 ? (
             <div className={styles.stream}>
-              {console.warn('room', room)}
-              {console.warn('name', currentUser())}
-              {console.warn('pass', password)}
               {currentUser() != undefined && showMeet ? (
                 <Jutsu
                   containerStyles={{ width: '100%', height: '70vh' }}
@@ -127,7 +124,7 @@ const Live = (): JSX.Element => {
               <form onSubmit={handleOnSubmit}>
                 <textarea placeholder='Escribe tu mensaje...' value={currentMessage} onChange={handleChange} />
                 <button type='submit' className={styles.chat_button}>
-                  Send
+                  Enviar
                 </button>
               </form>
             </div>

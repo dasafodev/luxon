@@ -16,7 +16,6 @@ const MatchDetails = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setData(JSON.parse(window.localStorage.getItem('detail')));
-      console.warn(data);
     }
   }, []);
 
@@ -42,7 +41,7 @@ const MatchDetails = () => {
             </a>
           </Link>
           <ul className={styles.containerPlayers}>
-            {data.awayTeam.squad.map((player) => {
+            {data.homeTeam.squad.map((player) => {
               if (player.role === 'PLAYER') {
                 return (
                   <li key={player.id}>

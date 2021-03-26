@@ -23,7 +23,6 @@
 }
 
 .stream {
-  margin-left: 10px;
   border: 1px solid #3092cd;
   position: relative;
   width: 100%;
@@ -43,7 +42,8 @@
   margin-right: 10px;
   border: 1px solid #3092cd;
   display: grid;
-  grid-template-rows: 1fr 90px;
+  grid-template-rows: 1fr fit-content(90px);
+
 }
 
 .chat_conversation {
@@ -76,6 +76,11 @@
   width: 100%;
   background-color: #3092cd;
   color: #ffffff;
+  border: none;
+}
+
+.chat_box textarea::placeholder {
+  color: white;
 }
 .chat_box textarea::placeholder {
   color: white;
@@ -101,8 +106,8 @@
 
   .stream,
   .chat {
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
   }
 }
 
