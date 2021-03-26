@@ -43,7 +43,6 @@
   border: 1px solid #3092cd;
   display: grid;
   grid-template-rows: 1fr fit-content(90px);
-
 }
 
 .chat_conversation {
