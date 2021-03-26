@@ -20,16 +20,17 @@ export const getStaticProps = async () => {
   for (let index = 0; index < Shields.length; index++) {
     const idCode = Shields[index].code;
     const tempData = {};
-    const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/competitions/${idCode}/matches`);
+    const response = await fetch(`${protocol}://dev-luxxon.herokuapp.com/api/competitions/${idCode}/matches`);
+    // const response = await fetch(`${protocol}://dev-luxxon.herokuapp.com/api/competitions/${idCode}/matches`);
     const dataResp = await response.json();
     tempData['matches'] = dataResp.matches;
 
-    const res = await fetch(`${protocol}://${process.env.HOST_NAME}/api/competitions/${idCode}/standings`);
+    const res = await fetch(`${protocol}://dev-luxxon.herokuapp.com/api/competitions/${idCode}/standings`);
     // const res = await fetch(`/api/competitions/${idCode}/standings/`);
     const positionsTable = await res.json();
     tempData['positions'] = positionsTable.standings[0].table;
 
-    const resScorers = await fetch(`${protocol}://${process.env.HOST_NAME}/api/competitions/${idCode}/scorers`);
+    const resScorers = await fetch(`${protocol}://dev-luxxon.herokuapp.com/api/competitions/${idCode}/scorers`);
     // const resScorers = await fetch(`/api/competitions/${idCode}/scorers/`);
     const goalScorer = await resScorers.json();
     tempData['scorers'] = goalScorer.scorers;

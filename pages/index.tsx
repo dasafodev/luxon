@@ -8,7 +8,7 @@ import MatchCard from '../app/components/match_card';
 
 export async function getStaticProps() {
   const protocol = process.env.HOST_NAME == 'localhost:3000' ? 'http' : 'https';
-  const response = await fetch(`${protocol}://${process.env.HOST_NAME}/api/matches`);
+  const response = await fetch(`${protocol}://dev-luxxon.herokuapp.com/api/matches`);
   const data = await response.json();
 
   if (!data) {
