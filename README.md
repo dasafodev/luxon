@@ -1,3 +1,7 @@
+## Descripción
+
+Luxxon es una aplicación web donde puedes agendar los partidos de tus equipos favoritos del mundo en tú hora local para disfrutarlos (de manera segura) en compañia de tus amigos e hinchas de todo el mundo. Además puedes ver las listas de clasificación de los equipos con sus respectivos estadisticas, más la lista de goleadores.
+
 ## Equipo de diseño & desarrollo
 
 - [Pablo Verduzco](https://www.linkedin.com/in/pabloverduzco/)
@@ -5,9 +9,6 @@
 - [Santiago Forero](https://www.linkedin.com/in/dasafodev/)
 - [Jorge Arias Argüelles](https://www.linkedin.com/in/jorgeariasarguelles/)
 
-## Descripción
-
-Luxxon es una aplicación web donde puedes agendar los partidos de tus equipos favoritos del mundo en tú hora local para disfrutarlos (de manera segura) en compañia de tus amigos e hinchas de todo el mundo. Además puedes ver las listas de clasificación de los equipos con sus respectivos estadisticas, más la lista de goleadores.
 
 ## Tecnologias de administración de proyectos
 
